@@ -1,0 +1,48 @@
+\begin{table}[!htb]
+\caption{Descriptive Statistics}
+\label{Descriptive Statistics}
+\begin{threeparttable}
+\begin{tabular}{ccccccccc}
+\toprule
+Column&Mean&Sigma&N&Median&Q1&Q3&Shapiro&MedQ1Q3\\
+\midrule
+Age&41.79&11.30&493&42&33&51&0  (not normal)&42 [33; 51]\\
+YearsWorking&23.88&14.01&493&23&11&36&0  (not normal)&23 [11; 36]\\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\begin{table}[!htb]
+\caption{Factors}
+\label{Factors}
+\begin{threeparttable}
+\begin{tabular}{cc}
+\toprule
+variable&frequencyTable\\
+\midrule
+Profession&MTP: 38 (7.71%) , Nurse: 296 (60.04%) , Phys: 43 (8.72%) , Psych: 61 (12.37%) , SW: 55 (11.16%) \\
+Sex&Female: 359 (72.82%) , Male: 134 (27.18%) \\
+TS_outcome&0: 275 (55.78%) , 1: 218 (44.22%) \\
+DC_outcome&0: 341 (69.17%) , 1: 152 (30.83%) \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\clearpage
+\begin{table}[!htb]
+\caption{Internal consistency}
+\label{cronbachs}
+\begin{threeparttable}
+\begin{tabular}{lcccc}
+\toprule
+& X & Y & R & p \\
+\midrule
+ &  & NA &  \\
+ &  &  &  \\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}RStudioGD 
+        2 
+RStudioGD 
+        2 

@@ -11,6 +11,8 @@ source ("libraries/my_procedures.R")
 
 #this is redirect console to a file console.txt
 dir_output_prefix=paste("outputs/",Sys.Date(), sep="")
+dir_output_prefix=("outputs/")
+
 dir.create(dir_output_prefix)
 plotfilenum=0
 dir_plots=(paste(dir_output_prefix, "/", "plots",sep=""))
@@ -59,10 +61,9 @@ latex=createSpearmanLatexTable(ds)
 cat(latex)
 createCorrelationPlots(ds)
 
-
+source("libraries/densityPlots.R")
 ds$startedCareer=ds$Age-ds$YearsWorking
 exportDensityPlots(ds, filename,subsetName)
-source("libraries/densityPlots.R")
 
 
 
