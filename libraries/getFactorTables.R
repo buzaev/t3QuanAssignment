@@ -24,8 +24,8 @@ getFactorTables <- function(ds) {
         names(freq_table), 
         ": ",
         freq_table, 
-        paste0(" (", round(100 * freq_table / total, 2), "%)"), 
-        " ",
+        paste0(" (", round(100 * freq_table / total, 2), "\%)"), 
+        "",
         sep = "", 
         collapse = ", "
       )

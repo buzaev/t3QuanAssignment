@@ -8,6 +8,7 @@ convertToLatex <- function(df, table_name) {
   latex_table <- paste0(latex_table, "\\label{", table_name, "}\n")
   latex_table <- paste0(latex_table, "\\begin{threeparttable}\n")
   latex_table <- paste0(latex_table, "\\begin{tabular}{", paste(rep("c", ncol(df)), collapse = ""), "}\n")
+  latex_table <- paste0(latex_table, "% используй {p{3cm}p{7cm}} если нужно переносить с newline \n")
   latex_table <- paste0(latex_table, "\\toprule\n")
   
   # Заголовки

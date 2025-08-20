@@ -31,7 +31,7 @@ for (col_name in colnames(ds)) {
     # Perform Shapiro-Wilk normality test
     shapiro_test <- shapiro.test(col_data)
     shapiro_result <- ifelse(shapiro_test$p.value > 0.05, "normal", "not normal")
-    shapiro_result <- ifelse(shapiro_test$p.value > 0.05, paste(round(shapiro_test$p.value,7), " (normal)"), paste(round(shapiro_test$p.value,3), " (not normal)"))
+    shapiro_result <- ifelse(shapiro_test$p.value > 0.05, paste(round(shapiro_test$p.value,7c), " (normal)"), paste(round(shapiro_test$p.value,3), " (not normal)"))
     
     # Add the results as a new row in the descriptive dataframe
     descriptive <- rbind(descriptive, data.frame(
