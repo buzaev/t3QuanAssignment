@@ -1,7 +1,7 @@
 analyseModel=function(ds, observed, model, modelName) {
   
   
-  ds$observed=observed
+  ds$observed=as.numeric(observed)
   ds$predicted=predict(model, newdata = ds, type="response")
  
   library(pROC)
@@ -11,13 +11,15 @@ analyseModel=function(ds, observed, model, modelName) {
   print (aucValue)
   # print(paste("AUC:", aucValue))
   plot(rocCurve, col="blue", main="ROC")
-  ds$residuals=residuals(model, newdata = ds, type="pearson") #I want to see normality, variability, outliers 
+ # ds$residuals=residuals(model, newdata = ds, type="pearson") #I want to see normality, variability, outliers 
+  ds$residuals = ds$observed
+  ds$residuals = ds$observed - ds$predicted
   print(paste("AUC:", aucValue))
   print  (shapiro.test(ds$residuals) )
   
   mean_exp=mean(ds$residuals, na.rm=TRUE)  # Среднее значение
   sd_exp=sd(ds$residuals, na.rm=TRUE)      # Стандартное отклонение
-  xname=paste("Disribution of Pearson residuals of ",modelName)
+  xname=paste("Disribution of residuals of ",modelName)
   gg=ggplot(ds, aes(residuals)) +
     geom_density(alpha=0.4) + 
     geom_vline(aes(xintercept=median(residuals)), color="darkgrey", linetype="dashed") +

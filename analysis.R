@@ -111,6 +111,9 @@ print(ChiST)
 kruskal.test(ds$Age, ds$DC_outcome)
 
 
+
+
+
 #DC vs individual
 #library(dummies)
 #ds = dummy.data.frame(ds, names = "Profession", sep = "") #R language glm does automatically
@@ -126,9 +129,8 @@ analyseModel(ds, ds$TS_outcome, model1, "Model 1. DC_outcome = Profession +Sex +
   #TS vs individual
   model2 = glm(TS_outcome ~ Profession +Sex + Age+ YearsWorking, data = ds, family = binomial)
   summary(model2)
-  summary(model1)
   source("libraries/analyseModel.R")
-  analyseModel(ds, ds$TS_outcome, model1, "Model 2. TS_outcome = Profession +Sex + Age+ YearsWorking")
+  analyseModel(ds, ds$TS_outcome, model2, "Model 2. TS_outcome = Profession +Sex + Age+ YearsWorking")
   
 
   
@@ -144,15 +146,15 @@ analyseModel(ds, ds$TS_outcome, model1, "Model 1. DC_outcome = Profession +Sex +
                   Sex +     
                   Age+
                   YearsWorking+ 
-                  DC_outcome+
+                  DC_outcome# +
                
-        #         Profession*YearsWorking#+ 
-        #         Profession*DC_outcome#+
+         #        Profession*YearsWorking#+ 
+         #         Profession*DC_outcome#+
         #         Profession*Age+
         #         Profession*Sex+
 
         #         Sex*Age+ 
-        #         Sex*YearsWorking+
+        #         Sex*YearsWorking +
         #         Sex*DC_outcome +
  
         #         Age*YearsWorking+
@@ -177,4 +179,33 @@ analyseModel(ds, ds$TS_outcome, model1, "Model 1. DC_outcome = Profession +Sex +
   analyseModel(ds[idx==2,], ds$TS_outcome[idx==2], model3, "Model 3. TS_outcome = Personal + DC_outcome.")
   
 
+  ds$DCrequired <- ifelse(ds$Profession %in% c("MTP", "Nurse", "Phys"), 1, 0)
+  model3 = glm(TS_outcome ~
+                 DCrequired+ 
+                 Sex +     
+                 Age+
+                 YearsWorking+ 
+                 DC_outcome +
+                 
+               #         Profession*YearsWorking#+ 
+                        DCrequired*DC_outcome#+
+               #         Profession*Age+
+               #         Profession*Sex+
+               
+               #         Sex*Age+ 
+               #         Sex*YearsWorking +
+               #         Sex*DC_outcome +
+               
+               #         Age*YearsWorking+
+               #         Age*DC_outcome +
+               
+               #         YearsWorking*DC_outcome
+               
+               
+               ,data = ds, family =binomial)
+  
+  
+  summary(model3)
+  source("libraries/analyseModel.R")
+  analyseModel(ds, ds$TS_outcome, model3, "Model 3. TS_outcome = DCrequired Personal + DC_outcome.")
   
