@@ -57,17 +57,35 @@ exportDensityPlots <- function(ds, filename, subsetName){
   
   # Визуализация
   plot(gg)
-  
-  #plotfilename=paste(dir_plots, "/", plotfilenum, "-",subsetName,"-", plotname, ".svg", sep="")
-  #ggsave(plotfilename, units="in", width=7, height=5, dpi=600 )
-  #savegg(plotfilenum,dir_plots,"sex-innovativeBehaviorInventory",subsetName)
-  
-  plotfilename=paste(dir_plots,"/","experience-density.pdf", sep="")
+  plotfilename=paste(dir_plots,"/","density-experience.pdf", sep="")
   pdf(plotfilename,6,4)
   print(gg, newpage = FALSE)
   dev.off()
   
   
+  
+  xname="Experience (years)"
+  gg <- ggplot(ds, aes(YearsWorking)) +
+    geom_density(alpha = 0.4, aes(fill = Profession)) + 
+    geom_vline(aes(xintercept = median(Age)), color = "darkgrey", linetype = "dashed") +
+    geom_vline(aes(xintercept = mean(Age)), color = "darkgrey", linetype = "solid") +
+    theme_minimal() +
+    labs(
+      title = "Density plot with Expected Normal Distribution",
+      subtitle = xname,
+      caption = paste("Subset: ", subsetName, "from file ", filename),
+      x = xname,
+      y = "Density",
+      fill = "Profession"
+    )
+  
+  # Визуализация
+  plot(gg)
+  plot(gg)
+  plotfilename=paste(dir_plots,"/","density-experience-profession", sep="")
+  pdf(plotfilename,6,4)
+  print(gg, newpage = FALSE)
+  dev.off()
   
   mean_exp <- mean(ds$startedCareer, na.rm = TRUE)  # Среднее значение
   sd_exp <- sd(ds$startedCareer, na.rm = TRUE)      # Стандартное отклонение
