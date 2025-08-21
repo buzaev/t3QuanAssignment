@@ -11,7 +11,6 @@ analyseModel <- function(ds, observed, model, modelName) {
  # print(paste("AUC:", aucValue))
   plot(rocCurve, col = "blue", main = "ROC")
   
-  
   ds$modelResiduals=residuals(model, type="pearson") #I want to see normality, variability, outliers 
   shapiro.test(ds$modelResiduals) 
   
@@ -70,13 +69,13 @@ analyseModel <- function(ds, observed, model, modelName) {
          shape="")#,
   plot(gg) 
   
-  plotfilename=paste(dir_plots,"/",modelName,"-boxplot-predicted-vs-observed", sep="")
+  plotfilename=paste(dir_plots,"/",modelName,"-boxplot-predicted-vs-observed.pdf", sep="")
   pdf(plotfilename,6,4)
   print(gg, newpage = FALSE)
   dev.off()
   
   
   print(paste("AUC:", aucValue))
-  print  (shapiro.test(ds$model2Residuals) )
+  print  (shapiro.test(ds$modelResiduals) )
   
 }

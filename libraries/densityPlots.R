@@ -22,12 +22,7 @@ exportDensityPlots <- function(ds, filename, subsetName){
   
   # Визуализация
   plot(gg)
-  
-  #plotfilename=paste(dir_plots, "/", plotfilenum, "-",subsetName,"-", plotname, ".svg", sep="")
-  #ggsave(plotfilename, units="in", width=7, height=5, dpi=600 )
-  #savegg(plotfilenum,dir_plots,"sex-innovativeBehaviorInventory",subsetName)
-  
-  plotfilename=paste(dir_plots,"/","age-density.pdf", sep="")
+  plotfilename=paste(dir_plots,"/","density-age.pdf", sep="")
   pdf(plotfilename,6,4)
   print(gg, newpage = FALSE)
   dev.off()
@@ -82,7 +77,7 @@ exportDensityPlots <- function(ds, filename, subsetName){
   # Визуализация
   plot(gg)
   plot(gg)
-  plotfilename=paste(dir_plots,"/","density-experience-profession", sep="")
+  plotfilename=paste(dir_plots,"/","density-experience-profession.pdf", sep="")
   pdf(plotfilename,6,4)
   print(gg, newpage = FALSE)
   dev.off()
