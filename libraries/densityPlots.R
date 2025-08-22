@@ -19,8 +19,6 @@ exportDensityPlots <- function(ds, filename, subsetName){
       y = "Density",
       fill = "Sex"
     )
-  
-  # Визуализация
   plot(gg)
   plotfilename=paste(dir_plots,"/","density-age.pdf", sep="")
   pdf(plotfilename,6,4)
@@ -36,8 +34,8 @@ exportDensityPlots <- function(ds, filename, subsetName){
   # Добавляем нормальное распределение на график
   gg <- ggplot(ds, aes(YearsWorking)) +
     geom_density(alpha = 0.4, aes(fill = Sex)) + 
-    geom_vline(aes(xintercept = median(Age)), color = "darkgrey", linetype = "dashed") +
-    geom_vline(aes(xintercept = mean(Age)), color = "darkgrey", linetype = "solid") +
+    geom_vline(aes(xintercept = median(YearsWorking)), color = "darkgrey", linetype = "dashed") +
+    geom_vline(aes(xintercept = mean(YearsWorking)), color = "darkgrey", linetype = "solid") +
     stat_function(fun = dnorm, args = list(mean = mean_exp, sd = sd_exp), 
                   color = "darkgrey", linetype = "solid", size = 1, alpha=0.5) +  # Нормальное распределение
     theme_minimal() +
@@ -49,8 +47,6 @@ exportDensityPlots <- function(ds, filename, subsetName){
       y = "Density",
       fill = "Sex"
     )
-  
-  # Визуализация
   plot(gg)
   plotfilename=paste(dir_plots,"/","density-experience.pdf", sep="")
   pdf(plotfilename,6,4)
@@ -61,6 +57,50 @@ exportDensityPlots <- function(ds, filename, subsetName){
   
   xname="Experience (years)"
   gg <- ggplot(ds, aes(YearsWorking)) +
+    geom_density(alpha = 0.4, aes(fill = Profession)) + 
+    geom_vline(aes(xintercept = median(YearsWorking)), color = "darkgrey", linetype = "dashed") +
+    geom_vline(aes(xintercept = mean(YearsWorking)), color = "darkgrey", linetype = "solid") +
+    theme_minimal() +
+    labs(
+      title = "Density plot with Expected Normal Distribution",
+      subtitle = xname,
+      caption = paste("Subset: ", subsetName, "from file ", filename),
+      x = xname,
+      y = "Density",
+      fill = "Profession"
+    )
+  plot(gg)
+  plotfilename=paste(dir_plots,"/","density-experience-profession.pdf", sep="")
+  pdf(plotfilename,6,4)
+  print(gg, newpage = FALSE)
+  dev.off()
+  
+  mean_exp = mean(ds$startedCareer, na.rm = TRUE)  # Среднее значение
+  sd_exp = sd(ds$startedCareer, na.rm = TRUE)      # Стандартное отклонение
+  xname="Started Carreer (years)"
+  gg <- ggplot(ds, aes(startedCareer)) +
+    geom_density(alpha = 0.4, aes(fill = Sex)) + 
+    geom_vline(aes(xintercept = median(startedCareer)), color = "darkgrey", linetype = "dashed") +
+    geom_vline(aes(xintercept = mean(startedCareer)), color = "darkgrey", linetype = "solid") +
+    stat_function(fun = dnorm, args = list(mean = mean_exp, sd = sd_exp), 
+                  color = "darkgrey", linetype = "solid", size = 1, alpha=0.5) +  # Нормальное распределение
+    theme_minimal() +
+    labs(
+      title = "Density plot with Expected Normal Distribution",
+      subtitle = xname,
+      caption = paste("Subset: ", subsetName, "from file ", filename),
+      x = xname,
+      y = "Density",
+      fill = "Sex"
+    )
+  plot(gg)
+  plotfilename=paste(dir_plots,"/","experience-density.pdf", sep="")
+  pdf(plotfilename,6,4)
+  print(gg, newpage = FALSE)
+  dev.off()
+  
+  xname="Age (years)"
+  gg <- ggplot(ds, aes(Age)) +
     geom_density(alpha = 0.4, aes(fill = Profession)) + 
     geom_vline(aes(xintercept = median(Age)), color = "darkgrey", linetype = "dashed") +
     geom_vline(aes(xintercept = mean(Age)), color = "darkgrey", linetype = "solid") +
@@ -73,46 +113,11 @@ exportDensityPlots <- function(ds, filename, subsetName){
       y = "Density",
       fill = "Profession"
     )
-  
-  # Визуализация
   plot(gg)
-  plot(gg)
-  plotfilename=paste(dir_plots,"/","density-experience-profession.pdf", sep="")
+  plotfilename=paste(dir_plots,"/","density-age-profession.pdf", sep="")
   pdf(plotfilename,6,4)
   print(gg, newpage = FALSE)
   dev.off()
-  
-  mean_exp <- mean(ds$startedCareer, na.rm = TRUE)  # Среднее значение
-  sd_exp <- sd(ds$startedCareer, na.rm = TRUE)      # Стандартное отклонение
-  xname="Started Carreer (years)"
-  gg <- ggplot(ds, aes(startedCareer)) +
-    geom_density(alpha = 0.4, aes(fill = Sex)) + 
-    geom_vline(aes(xintercept = median(Age)), color = "darkgrey", linetype = "dashed") +
-    geom_vline(aes(xintercept = mean(Age)), color = "darkgrey", linetype = "solid") +
-    stat_function(fun = dnorm, args = list(mean = mean_exp, sd = sd_exp), 
-                  color = "darkgrey", linetype = "solid", size = 1, alpha=0.5) +  # Нормальное распределение
-    theme_minimal() +
-    labs(
-      title = "Density plot with Expected Normal Distribution",
-      subtitle = xname,
-      caption = paste("Subset: ", subsetName, "from file ", filename),
-      x = xname,
-      y = "Density",
-      fill = "Sex"
-    )
-  
-  # Визуализация
-  plot(gg)
-  
-  #plotfilename=paste(dir_plots, "/", plotfilenum, "-",subsetName,"-", plotname, ".svg", sep="")
-  #ggsave(plotfilename, units="in", width=7, height=5, dpi=600 )
-  #savegg(plotfilenum,dir_plots,"sex-innovativeBehaviorInventory",subsetName)
-  
-  plotfilename=paste(dir_plots,"/","experience-density.pdf", sep="")
-  pdf(plotfilename,6,4)
-  print(gg, newpage = FALSE)
-  dev.off()
-  
   
   
 }

@@ -28,21 +28,28 @@ YearsWorking&23.88&14.01&493&23&11&36&0  (not normal)&23 [11; 36]\\
 \end{tabular}
 \end{threeparttable}
 \end{table}
-\clearpage
 \begin{table}[!htb]
-\caption{Internal consistency}
-\label{cronbachs}
+\caption{Factors}
+\label{Factors}
 \begin{threeparttable}
-\begin{tabular}{lcccc}
+\begin{tabular}{cc}
+% используй {p{3cm}p{7cm}} если нужно переносить с newline 
 \toprule
-& X & Y & R & p \\
+variable&frequencyTable\\
 \midrule
- &  & NA &  \\
- &  &  &  \\
+Profession&MTP: 38 (7.71\%), Nurse: 296 (60.04\%), Phys: 43 (8.72\%), Psych: 61 (12.37\%), SW: 55 (11.16\%)\\
+Sex&Female: 359 (72.82\%), Male: 134 (27.18\%)\\
+TS_outcome&0: 275 (55.78\%), 1: 218 (44.22\%)\\
+DC_outcome&0: 341 (69.17\%), 1: 152 (30.83\%)\\
 \bottomrule
 \end{tabular}
 \end{threeparttable}
-\end{table}RStudioGD 
+\end{table}
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+RStudioGD 
         2 
 RStudioGD 
         2 
@@ -72,29 +79,54 @@ data:  tableOutcome
 X-squared = 38.262, df = 4, p-value = 9.894e-08
 
    
-      0   1
-  0 170 171
-  1 105  47
+    MTP Nurse Phys Psych  SW
+  0  16   219   38    43  25
+  1  22    77    5    18  30
 \begin{table}[!htb]
 \caption{2x2 Table}
 \label{2x2 Table}
 \begin{threeparttable}
-\begin{tabular}{cc}
+\begin{tabular}{ccccc}
 % используй {p{3cm}p{7cm}} если нужно переносить с newline 
 \toprule
-0&1\\
+MTP&Nurse&Phys&Psych&SW\\
 \midrule
-170&171\\
-105&47\\
+16&219&38&43&25\\
+22&77&5&18&30\\
 \bottomrule
 \end{tabular}
 \end{threeparttable}
 \end{table}
 
-	Pearson's Chi-squared test with Yates' continuity correction
+	Pearson's Chi-squared test
 
 data:  tableOutcome
-X-squared = 14.985, df = 1, p-value = 0.0001084
+X-squared = 38.262, df = 4, p-value = 9.894e-08
+
+   
+    MTP Nurse Phys Psych  SW
+  0  16   219   38    43  25
+  1  22    77    5    18  30
+\begin{table}[!htb]
+\caption{2x2 Table}
+\label{2x2 Table}
+\begin{threeparttable}
+\begin{tabular}{ccccc}
+% используй {p{3cm}p{7cm}} если нужно переносить с newline 
+\toprule
+MTP&Nurse&Phys&Psych&SW\\
+\midrule
+16&219&38&43&25\\
+22&77&5&18&30\\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+	Pearson's Chi-squared test
+
+data:  tableOutcome
+X-squared = 38.262, df = 4, p-value = 9.894e-08
 
 
 	Kruskal-Wallis rank sum test
@@ -145,33 +177,594 @@ RStudioGD
         2 
 
 Call:
-glm(formula = TS_outcome ~ Profession + Sex + Age + YearsWorking, 
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
     family = binomial, data = ds)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
--1.6567  -1.0923  -0.5615   1.0658   2.1911  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
 
 Coefficients:
                  Estimate Std. Error z value Pr(>|z|)    
-(Intercept)     -2.279175   0.553593  -4.117 3.84e-05 ***
-ProfessionNurse  1.093238   0.381917   2.862  0.00420 ** 
-ProfessionPhys   1.302663   0.481500   2.705  0.00682 ** 
-ProfessionPsych -0.631992   0.493913  -1.280  0.20070    
-ProfessionSW    -0.745511   0.517508  -1.441  0.14970    
-SexMale          0.126250   0.220293   0.573  0.56658    
-Age              0.027731   0.008683   3.194  0.00140 ** 
-YearsWorking     0.007416   0.006979   1.063  0.28798    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 676.84  on 492  degrees of freedom
-Residual deviance: 606.07  on 485  degrees of freedom
-AIC: 622.07
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
 
 Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+RStudioGD 
+        2 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial, data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+RStudioGD 
+        2 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial, data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+RStudioGD 
+        2 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial(link = "logit"), data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+RStudioGD 
+        2 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial(link = "logit"), data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf"
+RStudioGD 
+        2 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial(link = "logit"), data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf"
+RStudioGD 
+        2 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial(link = "logit"), data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf"
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial(link = "logit"), data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf"
+RStudioGD 
+        2 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial(link = "logit"), data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf"
+RStudioGD 
+        2 
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/1-boxplot-predicted-vs-observed.pdf}"
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf}"
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf}"
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf}"
+RStudioGD 
+        2 
+ofessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf"
+RStudioGD 
+        2 
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/1-boxplot-predicted-vs-observed.pdf}"
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf}"
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf}"
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf}"
+RStudioGD 
+        2 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      \begin{table}[!htb]
+\caption{Descriptive Statistics}
+\label{Descriptive Statistics}
+\begin{threeparttable}
+\begin{tabular}{ccccccccc}
+% используй {p{3cm}p{7cm}} если нужно переносить с newline 
+\toprule
+Column&Mean&Sigma&N&Median&Q1&Q3&Shapiro&MedQ1Q3\\
+\midrule
+Age&41.79&11.30&493&42&33&51&0  (not normal)&42 [33; 51]\\
+YearsWorking&23.88&14.01&493&23&11&36&0  (not normal)&23 [11; 36]\\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\begin{table}[!htb]
+\caption{Descriptive Statistics}
+\label{Descriptive Statistics}
+\begin{threeparttable}
+\begin{tabular}{ccccccccc}
+% используй {p{3cm}p{7cm}} если нужно переносить с newline 
+\toprule
+Column&Mean&Sigma&N&Median&Q1&Q3&Shapiro&MedQ1Q3\\
+\midrule
+Age&41.79&11.30&493&42&33&51&0  (not normal)&42 [33; 51]\\
+YearsWorking&23.88&14.01&493&23&11&36&0  (not normal)&23 [11; 36]\\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+\begin{table}[!htb]
+\caption{Factors}
+\label{Factors}
+\begin{threeparttable}
+\begin{tabular}{cc}
+% используй {p{3cm}p{7cm}} если нужно переносить с newline 
+\toprule
+variable&frequencyTable\\
+\midrule
+Profession&MTP: 38 (7.71\%), Nurse: 296 (60.04\%), Phys: 43 (8.72\%), Psych: 61 (12.37\%), SW: 55 (11.16\%)\\
+Sex&Female: 359 (72.82\%), Male: 134 (27.18\%)\\
+TS_outcome&0: 275 (55.78\%), 1: 218 (44.22\%)\\
+DC_outcome&0: 341 (69.17\%), 1: 152 (30.83\%)\\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+   
+    MTP Nurse Phys Psych  SW
+  0  16   219   38    43  25
+  1  22    77    5    18  30
+\begin{table}[!htb]
+\caption{2x2 Table}
+\label{2x2 Table}
+\begin{threeparttable}
+\begin{tabular}{ccccc}
+% используй {p{3cm}p{7cm}} если нужно переносить с newline 
+\toprule
+MTP&Nurse&Phys&Psych&SW\\
+\midrule
+16&219&38&43&25\\
+22&77&5&18&30\\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+	Pearson's Chi-squared test
+
+data:  tableOutcome
+X-squared = 38.262, df = 4, p-value = 9.894e-08
+
+   
+    MTP Nurse Phys Psych  SW
+  0  16   219   38    43  25
+  1  22    77    5    18  30
+\begin{table}[!htb]
+\caption{2x2 Table}
+\label{2x2 Table}
+\begin{threeparttable}
+\begin{tabular}{ccccc}
+% используй {p{3cm}p{7cm}} если нужно переносить с newline 
+\toprule
+MTP&Nurse&Phys&Psych&SW\\
+\midrule
+16&219&38&43&25\\
+22&77&5&18&30\\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+	Pearson's Chi-squared test
+
+data:  tableOutcome
+X-squared = 38.262, df = 4, p-value = 9.894e-08
+
+   
+    MTP Nurse Phys Psych  SW
+  0  16   219   38    43  25
+  1  22    77    5    18  30
+\begin{table}[!htb]
+\caption{2x2 Table}
+\label{2x2 Table}
+\begin{threeparttable}
+\begin{tabular}{ccccc}
+% используй {p{3cm}p{7cm}} если нужно переносить с newline 
+\toprule
+MTP&Nurse&Phys&Psych&SW\\
+\midrule
+16&219&38&43&25\\
+22&77&5&18&30\\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
+
+	Pearson's Chi-squared test
+
+data:  tableOutcome
+X-squared = 38.262, df = 4, p-value = 9.894e-08
+
+
+	Kruskal-Wallis rank sum test
+
+data:  ds$Age and ds$DC_outcome
+Kruskal-Wallis chi-squared = 4.8284, df = 1, p-value = 0.02799
 
 
 Call:
@@ -203,7 +796,7 @@ AIC: 564.75
 
 Number of Fisher Scoring iterations: 4
 
-[1] "Model 2. TS_outcome = Profession +Sex + Age+ YearsWorking"
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
 Area under the curve: 0.6454
 [1] "AUC: 0.64535446205171"
 
@@ -216,635 +809,35 @@ RStudioGD
         2 
 
 Call:
-glm(formula = TS_outcome ~ Profession + Sex + Age + YearsWorking + 
-    DC_outcome, family = binomial, data = ds)
-
-Deviance Residuals: 
-    Min       1Q   Median       3Q      Max  
--1.6987  -1.0616  -0.5345   1.0577   2.1300  
-
-Coefficients:
-                 Estimate Std. Error z value Pr(>|z|)    
-(Intercept)     -1.932207   0.572537  -3.375 0.000739 ***
-ProfessionNurse  0.935849   0.389335   2.404 0.016230 *  
-ProfessionPhys   1.072727   0.492238   2.179 0.029311 *  
-ProfessionPsych -0.795152   0.501826  -1.585 0.113076    
-ProfessionSW    -0.766391   0.521305  -1.470 0.141524    
-SexMale          0.035170   0.224273   0.157 0.875389    
-Age              0.026628   0.008770   3.036 0.002396 ** 
-YearsWorking     0.008646   0.007068   1.223 0.221250    
-DC_outcome1     -0.569395   0.228873  -2.488 0.012853 *  
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 676.84  on 492  degrees of freedom
-Residual deviance: 599.80  on 484  degrees of freedom
-AIC: 617.8
-
-Number of Fisher Scoring iterations: 4
-
-[1] "Model 3. TS_outcome = Personal + DC_outcome."
-Area under the curve: 0.7119
-[1] "AUC: 0.711934945788157"
-
-	Shapiro-Wilk normality test
-
-data:  ds$residuals
-W = 0.91582, p-value = 6.145e-16
-
-RStudioGD 
-        2 
-idx
-  1   2 
-387 106 
-[1] "Model 3. TS_outcome = Personal + DC_outcome."
-Area under the curve: 0.7111
-[1] "AUC: 0.711081288343558"
-
-	Shapiro-Wilk normality test
-
-data:  ds$residuals
-W = 0.91078, p-value = 2.438e-14
-
-RStudioGD 
-        2 
-[1] "Model 3. TS_outcome = Personal + DC_outcome."
-Area under the curve: 0.6888
-[1] "AUC: 0.688770053475936"
-
-	Shapiro-Wilk normality test
-
-data:  ds$residuals
-W = 0.911, p-value = 2.72e-06
-
-RStudioGD 
-        2 
-Error in install.packages : object 'brms' not found
-
-  There are binary versions available but the source versions are later:
-                  binary    source needs_compilation
-StanHeaders      2.26.28   2.32.10              TRUE
-inline            0.3.19    0.3.21             FALSE
-RcppParallel       5.1.7    5.1.10              TRUE
-QuickJSR           1.0.9     1.8.0              TRUE
-RcppEigen      0.3.3.9.4 0.3.4.0.2              TRUE
-BH              1.81.0-1  1.87.0-1             FALSE
-distributional     0.3.2     0.5.0             FALSE
-ggridges           0.5.5     0.5.6             FALSE
-rstan             2.32.3    2.32.7              TRUE
-loo                2.6.0     2.8.0             FALSE
-posterior          1.5.0     1.6.1             FALSE
-rstantools       2.3.1.1     2.4.0             FALSE
-bayesplot         1.10.0    1.13.0             FALSE
-coda              0.19-4  0.19-4.1             FALSE
-brms              2.20.4    2.22.0             FALSE
-
-
-The downloaded binary packages are in
-	/var/folders/7j/t95v7vs926992zsvpjrbbzfm0000gn/T//RtmpL751ng/downloaded_packages
-Warning in install.packages :
-  installation of package ‘RcppEigen’ had non-zero exit status
-Warning in install.packages :
-  installation of package ‘StanHeaders’ had non-zero exit status
-Warning in install.packages :
-  installation of package ‘rstan’ had non-zero exit status
-Warning in install.packages :
-  installation of package ‘brms’ had non-zero exit status
-
-  There are binary versions available but the source versions are later:
-             binary    source needs_compilation
-rbibutils    2.2.16       2.3              TRUE
-Rdpack          2.6     2.6.4             FALSE
-RcppEigen 0.3.3.9.4 0.3.4.0.2              TRUE
-lme4       1.1-35.1    1.1-37              TRUE
-
-Warning in install.packages :
-  installation of package ‘RcppEigen’ had non-zero exit status
-Warning in install.packages :
-  installation of package ‘lme4’ had non-zero exit status
-
-  There are binary versions available but the source versions are later:
-               binary    source needs_compilation
-cpp11           0.4.7     0.5.2             FALSE
-igraph          1.5.1     2.1.4              TRUE
-RcppEigen   0.3.3.9.4 0.3.4.0.2              TRUE
-threejs         0.3.3     0.3.4             FALSE
-rstan          2.32.3    2.32.7              TRUE
-StanHeaders   2.26.28   2.32.10              TRUE
-rstanarm       2.26.1    2.32.1              TRUE
-
-Error in install.packages : Unrecognized response “н”
-
-  There are binary versions available but the source versions are later:
-               binary    source needs_compilation
-cpp11           0.4.7     0.5.2             FALSE
-igraph          1.5.1     2.1.4              TRUE
-RcppEigen   0.3.3.9.4 0.3.4.0.2              TRUE
-threejs         0.3.3     0.3.4             FALSE
-rstan          2.32.3    2.32.7              TRUE
-StanHeaders   2.26.28   2.32.10              TRUE
-rstanarm       2.26.1    2.32.1              TRUE
-
-
-The downloaded binary packages are in
-	/var/folders/7j/t95v7vs926992zsvpjrbbzfm0000gn/T//RtmpL751ng/downloaded_packages
-Warning in install.packages :
-  installation of package ‘RcppEigen’ had non-zero exit status
-Warning in install.packages :
-  installation of package ‘igraph’ had non-zero exit status
-Warning in install.packages :
-  installation of package ‘StanHeaders’ had non-zero exit status
-Warning in install.packages :
-  installation of package ‘threejs’ had non-zero exit status
-Warning in install.packages :
-  installation of package ‘rstan’ had non-zero exit status
-Warning in install.packages :
-  installation of package ‘rstanarm’ had non-zero exit status
-
-  There are binary versions available but the source versions are later:
-                binary     source needs_compilation
-pbapply          1.7-2      1.7-4             FALSE
-hypergeo        1.2-13     1.2-14             FALSE
-BayesFactor 0.9.12-4.6 0.9.12-4.7              TRUE
-
-
-The downloaded binary packages are in
-	/var/folders/7j/t95v7vs926992zsvpjrbbzfm0000gn/T//RtmpL751ng/downloaded_packages
-
-  There are binary versions available but the source versions are later:
-         binary source needs_compilation
-ape       5.7-1  5.8-1              TRUE
-cubature  2.1.0  2.1.4              TRUE
-MCMCglmm   2.35   2.36              TRUE
-
-
-The downloaded binary packages are in
-	/var/folders/7j/t95v7vs926992zsvpjrbbzfm0000gn/T//RtmpL751ng/downloaded_packages
-Warning in install.packages :
-  installation of package ‘ape’ had non-zero exit status
-Warning in install.packages :
-  installation of package ‘MCMCglmm’ had non-zero exit status
-
-Call:
-glm(formula = TS_outcome ~ Profession + Sex + Age + YearsWorking + 
-    DC_outcome, family = binomial, data = ds[idx == 1, ])
-
-Deviance Residuals: 
-   Min      1Q  Median      3Q     Max  
--1.618  -1.028  -0.535   1.084   2.147  
-
-Coefficients:
-                 Estimate Std. Error z value Pr(>|z|)   
-(Intercept)     -1.826924   0.636445  -2.871  0.00410 **
-ProfessionNurse  0.616429   0.428370   1.439  0.15015   
-ProfessionPhys   0.403494   0.549394   0.734  0.46268   
-ProfessionPsych -1.091089   0.554760  -1.967  0.04921 * 
-ProfessionSW    -1.181711   0.579511  -2.039  0.04143 * 
-SexMale         -0.106854   0.256319  -0.417  0.67677   
-Age              0.028719   0.009903   2.900  0.00373 **
-YearsWorking     0.013579   0.008035   1.690  0.09101 . 
-DC_outcome1     -0.612519   0.260973  -2.347  0.01892 * 
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 526.84  on 386  degrees of freedom
-Residual deviance: 469.48  on 378  degrees of freedom
-AIC: 487.48
-
-Number of Fisher Scoring iterations: 4
-
-[1] "Model 3. TS_outcome = Personal + DC_outcome."
-Area under the curve: 0.7085
-[1] "AUC: 0.708465387823186"
-
-	Shapiro-Wilk normality test
-
-data:  ds$residuals
-W = 0.91353, p-value = 3.632e-16
-
-RStudioGD 
-        2 
-
-Call:
-glm(formula = TS_outcome ~ Profession + Sex + Age + YearsWorking + 
-    DC_outcome + Sex * YearsWorking, family = binomial, data = ds)
-
-Deviance Residuals: 
-    Min       1Q   Median       3Q      Max  
--1.6883  -1.0598  -0.5331   1.0635   2.1465  
-
-Coefficients:
-                      Estimate Std. Error z value Pr(>|z|)   
-(Intercept)          -1.898295   0.579359  -3.277  0.00105 **
-ProfessionNurse       0.942567   0.389792   2.418  0.01560 * 
-ProfessionPhys        1.078931   0.492610   2.190  0.02851 * 
-ProfessionPsych      -0.794552   0.501838  -1.583  0.11336   
-ProfessionSW         -0.776411   0.522381  -1.486  0.13720   
-SexMale              -0.104489   0.432331  -0.242  0.80902   
-Age                   0.026597   0.008772   3.032  0.00243 **
-YearsWorking          0.007032   0.008254   0.852  0.39427   
-DC_outcome1          -0.563914   0.229288  -2.459  0.01392 * 
-SexMale:YearsWorking  0.006048   0.016002   0.378  0.70547   
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 676.84  on 492  degrees of freedom
-Residual deviance: 599.65  on 483  degrees of freedom
-AIC: 619.65
-
-Number of Fisher Scoring iterations: 4
-
-[1] "Model 3. TS_outcome = Personal + DC_outcome."
-Area under the curve: 0.7134
-[1] "AUC: 0.713352793994996"
-
-	Shapiro-Wilk normality test
-
-data:  ds$residuals
-W = 0.91611, p-value = 6.57e-16
-
-RStudioGD 
-        2 
-
-Call:
-glm(formula = TS_outcome ~ Profession + Sex + Age + YearsWorking + 
-    DC_outcome + Sex * YearsWorking, family = binomial, data = ds)
-
-Deviance Residuals: 
-    Min       1Q   Median       3Q      Max  
--1.6883  -1.0598  -0.5331   1.0635   2.1465  
-
-Coefficients:
-                      Estimate Std. Error z value Pr(>|z|)   
-(Intercept)          -1.898295   0.579359  -3.277  0.00105 **
-ProfessionNurse       0.942567   0.389792   2.418  0.01560 * 
-ProfessionPhys        1.078931   0.492610   2.190  0.02851 * 
-ProfessionPsych      -0.794552   0.501838  -1.583  0.11336   
-ProfessionSW         -0.776411   0.522381  -1.486  0.13720   
-SexMale              -0.104489   0.432331  -0.242  0.80902   
-Age                   0.026597   0.008772   3.032  0.00243 **
-YearsWorking          0.007032   0.008254   0.852  0.39427   
-DC_outcome1          -0.563914   0.229288  -2.459  0.01392 * 
-SexMale:YearsWorking  0.006048   0.016002   0.378  0.70547   
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 676.84  on 492  degrees of freedom
-Residual deviance: 599.65  on 483  degrees of freedom
-AIC: 619.65
-
-Number of Fisher Scoring iterations: 4
-
-[1] "Model 3. TS_outcome = Personal + DC_outcome."
-Area under the curve: 0.7134
-[1] "AUC: 0.713352793994996"
-
-	Shapiro-Wilk normality test
-
-data:  ds$residuals
-W = 0.91611, p-value = 6.57e-16
-
-RStudioGD 
-        2 
-
-Call:
-glm(formula = TS_outcome ~ Profession + Sex + Age + YearsWorking + 
-    DC_outcome + Sex * YearsWorking, family = binomial, data = ds)
-
-Deviance Residuals: 
-    Min       1Q   Median       3Q      Max  
--1.6883  -1.0598  -0.5331   1.0635   2.1465  
-
-Coefficients:
-                      Estimate Std. Error z value Pr(>|z|)   
-(Intercept)          -1.898295   0.579359  -3.277  0.00105 **
-ProfessionNurse       0.942567   0.389792   2.418  0.01560 * 
-ProfessionPhys        1.078931   0.492610   2.190  0.02851 * 
-ProfessionPsych      -0.794552   0.501838  -1.583  0.11336   
-ProfessionSW         -0.776411   0.522381  -1.486  0.13720   
-SexMale              -0.104489   0.432331  -0.242  0.80902   
-Age                   0.026597   0.008772   3.032  0.00243 **
-YearsWorking          0.007032   0.008254   0.852  0.39427   
-DC_outcome1          -0.563914   0.229288  -2.459  0.01392 * 
-SexMale:YearsWorking  0.006048   0.016002   0.378  0.70547   
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 676.84  on 492  degrees of freedom
-Residual deviance: 599.65  on 483  degrees of freedom
-AIC: 619.65
-
-Number of Fisher Scoring iterations: 4
-
-[1] "Model 3. TS_outcome = Personal + DC_outcome."
-Area under the curve: 0.7134
-[1] "AUC: 0.713352793994996"
-
-	Shapiro-Wilk normality test
-
-data:  ds$residuals
-W = 0.91611, p-value = 6.57e-16
-
-RStudioGD 
-        2 
-
-Call:
-glm(formula = TS_outcome ~ Profession + Sex + Age + YearsWorking + 
-    DC_outcome + Sex * YearsWorking, family = binomial, data = ds)
-
-Deviance Residuals: 
-    Min       1Q   Median       3Q      Max  
--1.6883  -1.0598  -0.5331   1.0635   2.1465  
-
-Coefficients:
-                      Estimate Std. Error z value Pr(>|z|)   
-(Intercept)          -1.898295   0.579359  -3.277  0.00105 **
-ProfessionNurse       0.942567   0.389792   2.418  0.01560 * 
-ProfessionPhys        1.078931   0.492610   2.190  0.02851 * 
-ProfessionPsych      -0.794552   0.501838  -1.583  0.11336   
-ProfessionSW         -0.776411   0.522381  -1.486  0.13720   
-SexMale              -0.104489   0.432331  -0.242  0.80902   
-Age                   0.026597   0.008772   3.032  0.00243 **
-YearsWorking          0.007032   0.008254   0.852  0.39427   
-DC_outcome1          -0.563914   0.229288  -2.459  0.01392 * 
-SexMale:YearsWorking  0.006048   0.016002   0.378  0.70547   
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 676.84  on 492  degrees of freedom
-Residual deviance: 599.65  on 483  degrees of freedom
-AIC: 619.65
-
-Number of Fisher Scoring iterations: 4
-
-[1] "Model 3. TS_outcome = Personal + DC_outcome."
-Area under the curve: 0.7134
-[1] "AUC: 0.713352793994996"
-
-	Shapiro-Wilk normality test
-
-data:  ds$residuals
-W = 0.91611, p-value = 6.57e-16
-
-RStudioGD 
-        2 
-
-Call:
-glm(formula = TS_outcome ~ Profession + Sex + Age + YearsWorking + 
-    DC_outcome + Profession * DC_outcome, family = binomial, 
-    data = ds)
-
-Deviance Residuals: 
-    Min       1Q   Median       3Q      Max  
--1.8494  -1.0288  -0.5002   1.0393   2.3388  
-
-Coefficients:
-                              Estimate Std. Error z value Pr(>|z|)   
-(Intercept)                  -2.175589   0.697696  -3.118  0.00182 **
-ProfessionNurse               1.219645   0.563575   2.164  0.03046 * 
-ProfessionPhys                1.122164   0.639260   1.755  0.07919 . 
-ProfessionPsych              -0.278444   0.649094  -0.429  0.66794   
-ProfessionSW                 -1.198969   0.825952  -1.452  0.14661   
-SexMale                       0.063413   0.225754   0.281  0.77879   
-Age                           0.026366   0.008818   2.990  0.00279 **
-YearsWorking                  0.009122   0.007150   1.276  0.20198   
-DC_outcome1                  -0.126800   0.731346  -0.173  0.86235   
-ProfessionNurse:DC_outcome1  -0.628113   0.779956  -0.805  0.42064   
-ProfessionPhys:DC_outcome1    1.269421   1.382441   0.918  0.35849   
-ProfessionPsych:DC_outcome1 -15.263603 558.789406  -0.027  0.97821   
-ProfessionSW:DC_outcome1      0.773169   1.060895   0.729  0.46613   
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 676.84  on 492  degrees of freedom
-Residual deviance: 588.55  on 480  degrees of freedom
-AIC: 614.55
-
-Number of Fisher Scoring iterations: 15
-
-[1] "Model 3. TS_outcome = Personal + DC_outcome."
-Area under the curve: 0.7229
-[1] "AUC: 0.722894078398666"
-
-	Shapiro-Wilk normality test
-
-data:  ds$residuals
-W = 0.92285, p-value = 3.297e-15
-
-RStudioGD 
-        2 
-
-Call:
-glm(formula = TS_outcome ~ Profession + Sex + Age + YearsWorking + 
-    DC_outcome, family = binomial, data = ds)
-
-Deviance Residuals: 
-    Min       1Q   Median       3Q      Max  
--1.6987  -1.0616  -0.5345   1.0577   2.1300  
-
-Coefficients:
-                 Estimate Std. Error z value Pr(>|z|)    
-(Intercept)     -1.932207   0.572537  -3.375 0.000739 ***
-ProfessionNurse  0.935849   0.389335   2.404 0.016230 *  
-ProfessionPhys   1.072727   0.492238   2.179 0.029311 *  
-ProfessionPsych -0.795152   0.501826  -1.585 0.113076    
-ProfessionSW    -0.766391   0.521305  -1.470 0.141524    
-SexMale          0.035170   0.224273   0.157 0.875389    
-Age              0.026628   0.008770   3.036 0.002396 ** 
-YearsWorking     0.008646   0.007068   1.223 0.221250    
-DC_outcome1     -0.569395   0.228873  -2.488 0.012853 *  
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 676.84  on 492  degrees of freedom
-Residual deviance: 599.80  on 484  degrees of freedom
-AIC: 617.8
-
-Number of Fisher Scoring iterations: 4
-
-[1] "Model 3. TS_outcome = Personal + DC_outcome."
-Area under the curve: 0.7119
-[1] "AUC: 0.711934945788157"
-
-	Shapiro-Wilk normality test
-
-data:  ds$residuals
-W = 0.91582, p-value = 6.145e-16
-
-RStudioGD 
-        2 
-< table of extent 0 >
-
-  MTP Nurse  Phys Psych    SW 
-   38   296    43    61    55 
-
-Call:
-glm(formula = TS_outcome ~ DCrequired + Sex + Age + YearsWorking + 
-    DC_outcome + DCrequired * DC_outcome, family = binomial, 
-    data = ds)
-
-Deviance Residuals: 
-   Min      1Q  Median      3Q     Max  
--1.643  -1.073  -0.539   1.069   2.123  
-
-Coefficients:
-                        Estimate Std. Error z value Pr(>|z|)    
-(Intercept)            -2.709021   0.525089  -5.159 2.48e-07 ***
-DCrequired              1.691735   0.327263   5.169 2.35e-07 ***
-SexMale                 0.049732   0.222861   0.223  0.82342    
-Age                     0.025907   0.008696   2.979  0.00289 ** 
-YearsWorking            0.009141   0.007013   1.303  0.19243    
-DC_outcome1            -0.543649   0.534828  -1.016  0.30939    
-DCrequired:DC_outcome1 -0.163754   0.583202  -0.281  0.77888    
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 676.84  on 492  degrees of freedom
-Residual deviance: 606.35  on 486  degrees of freedom
-AIC: 620.35
-
-Number of Fisher Scoring iterations: 4
-
-[1] "Model 3. TS_outcome = DCrequired Personal + DC_outcome."
-Area under the curve: 0.7015
-[1] "AUC: 0.701492910758966"
-
-	Shapiro-Wilk normality test
-
-data:  ds$residuals
-W = 0.90626, p-value < 2.2e-16
-
-RStudioGD 
-        2 
-
-Call:
-glm(formula = TS_outcome ~ DCrequired + Sex + Age + YearsWorking + 
-    DC_outcome, family = binomial, data = ds)
-
-Deviance Residuals: 
-   Min      1Q  Median      3Q     Max  
--1.640  -1.077  -0.522   1.072   2.162  
-
-Coefficients:
-              Estimate Std. Error z value Pr(>|z|)    
-(Intercept)  -2.663931   0.497968  -5.350 8.81e-08 ***
-DCrequired    1.641745   0.271796   6.040 1.54e-09 ***
-SexMale       0.048771   0.222608   0.219  0.82658    
-Age           0.025849   0.008690   2.975  0.00293 ** 
-YearsWorking  0.009158   0.007014   1.306  0.19171    
-DC_outcome1  -0.680794   0.222104  -3.065  0.00218 ** 
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 676.84  on 492  degrees of freedom
-Residual deviance: 606.43  on 487  degrees of freedom
-AIC: 618.43
-
-Number of Fisher Scoring iterations: 4
-
-[1] "Model 3. TS_outcome = DCrequired Personal + DC_outcome."
-Area under the curve: 0.7019
-[1] "AUC: 0.70185988323603"
-
-	Shapiro-Wilk normality test
-
-data:  ds$residuals
-W = 0.90512, p-value < 2.2e-16
-
-RStudioGD 
-        2 
-
-Call:
-glm(formula = TS_outcome ~ DCrequired + Sex + Age + YearsWorking + 
-    DC_outcome + DCrequired * DC_outcome, family = binomial, 
-    data = ds)
-
-Deviance Residuals: 
-   Min      1Q  Median      3Q     Max  
--1.643  -1.073  -0.539   1.069   2.123  
-
-Coefficients:
-                        Estimate Std. Error z value Pr(>|z|)    
-(Intercept)            -2.709021   0.525089  -5.159 2.48e-07 ***
-DCrequired              1.691735   0.327263   5.169 2.35e-07 ***
-SexMale                 0.049732   0.222861   0.223  0.82342    
-Age                     0.025907   0.008696   2.979  0.00289 ** 
-YearsWorking            0.009141   0.007013   1.303  0.19243    
-DC_outcome1            -0.543649   0.534828  -1.016  0.30939    
-DCrequired:DC_outcome1 -0.163754   0.583202  -0.281  0.77888    
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 676.84  on 492  degrees of freedom
-Residual deviance: 606.35  on 486  degrees of freedom
-AIC: 620.35
-
-Number of Fisher Scoring iterations: 4
-
-[1] "Model 3. TS_outcome = DCrequired Personal + DC_outcome."
-Area under the curve: 0.7015
-[1] "AUC: 0.701492910758966"
-
-	Shapiro-Wilk normality test
-
-data:  ds$residuals
-W = 0.90626, p-value < 2.2e-16
-
-RStudioGD 
-        2 
-
-Call:
-glm(formula = TS_outcome ~ Profession + Sex + Age + YearsWorking, 
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
     family = binomial, data = ds)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
--1.6567  -1.0923  -0.5615   1.0658   2.1911  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
 
 Coefficients:
                  Estimate Std. Error z value Pr(>|z|)    
-(Intercept)     -2.279175   0.553593  -4.117 3.84e-05 ***
-ProfessionNurse  1.093238   0.381917   2.862  0.00420 ** 
-ProfessionPhys   1.302663   0.481500   2.705  0.00682 ** 
-ProfessionPsych -0.631992   0.493913  -1.280  0.20070    
-ProfessionSW    -0.745511   0.517508  -1.441  0.14970    
-SexMale          0.126250   0.220293   0.573  0.56658    
-Age              0.027731   0.008683   3.194  0.00140 ** 
-YearsWorking     0.007416   0.006979   1.063  0.28798    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 676.84  on 492  degrees of freedom
-Residual deviance: 606.07  on 485  degrees of freedom
-AIC: 622.07
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
 
 Number of Fisher Scoring iterations: 4
 
-[1] "Model 2. TS_outcome = Profession +Sex + Age+ YearsWorking"
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
 Area under the curve: 0.6454
 [1] "AUC: 0.64535446205171"
 
@@ -857,138 +850,561 @@ RStudioGD
         2 
 
 Call:
-glm(formula = TS_outcome ~ Profession + Sex + Age + YearsWorking, 
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
     family = binomial, data = ds)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
--1.6567  -1.0923  -0.5615   1.0658   2.1911  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
 
 Coefficients:
                  Estimate Std. Error z value Pr(>|z|)    
-(Intercept)     -2.279175   0.553593  -4.117 3.84e-05 ***
-ProfessionNurse  1.093238   0.381917   2.862  0.00420 ** 
-ProfessionPhys   1.302663   0.481500   2.705  0.00682 ** 
-ProfessionPsych -0.631992   0.493913  -1.280  0.20070    
-ProfessionSW    -0.745511   0.517508  -1.441  0.14970    
-SexMale          0.126250   0.220293   0.573  0.56658    
-Age              0.027731   0.008683   3.194  0.00140 ** 
-YearsWorking     0.007416   0.006979   1.063  0.28798    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 676.84  on 492  degrees of freedom
-Residual deviance: 606.07  on 485  degrees of freedom
-AIC: 622.07
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
 
 Number of Fisher Scoring iterations: 4
 
-[1] "Model 2. TS_outcome = Profession +Sex + Age+ YearsWorking"
-Area under the curve: 0.7024
-[1] "AUC: 0.702351959966639"
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
 
 	Shapiro-Wilk normality test
 
 data:  ds$residuals
-W = 0.90438, p-value < 2.2e-16
+W = 0.84765, p-value < 2.2e-16
 
 RStudioGD 
         2 
 
-  0   1 
-341 152 
-
 Call:
-glm(formula = TS_outcome ~ Profession + Sex + Age + YearsWorking + 
-    DC_outcome, family = binomial, data = ds)
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial, data = ds)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
--1.6987  -1.0616  -0.5345   1.0577   2.1300  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
 
 Coefficients:
                  Estimate Std. Error z value Pr(>|z|)    
-(Intercept)     -1.932207   0.572537  -3.375 0.000739 ***
-ProfessionNurse  0.935849   0.389335   2.404 0.016230 *  
-ProfessionPhys   1.072727   0.492238   2.179 0.029311 *  
-ProfessionPsych -0.795152   0.501826  -1.585 0.113076    
-ProfessionSW    -0.766391   0.521305  -1.470 0.141524    
-SexMale          0.035170   0.224273   0.157 0.875389    
-Age              0.026628   0.008770   3.036 0.002396 ** 
-YearsWorking     0.008646   0.007068   1.223 0.221250    
-DC_outcome1     -0.569395   0.228873  -2.488 0.012853 *  
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 676.84  on 492  degrees of freedom
-Residual deviance: 599.80  on 484  degrees of freedom
-AIC: 617.8
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
 
 Number of Fisher Scoring iterations: 4
 
-[1] "Model 3. TS_outcome = Personal + DC_outcome."
-Area under the curve: 0.7119
-[1] "AUC: 0.711934945788157"
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
 
 	Shapiro-Wilk normality test
 
 data:  ds$residuals
-W = 0.91582, p-value = 6.145e-16
+W = 0.84765, p-value < 2.2e-16
 
 RStudioGD 
         2 
 
 Call:
-glm(formula = TS_outcome ~ DCrequired + Sex + Age + YearsWorking + 
-    DC_outcome + DCrequired * DC_outcome, family = binomial, 
-    data = ds)
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial(link = "logit"), data = ds)
 
 Deviance Residuals: 
-   Min      1Q  Median      3Q     Max  
--1.643  -1.073  -0.539   1.069   2.123  
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
 
 Coefficients:
-                        Estimate Std. Error z value Pr(>|z|)    
-(Intercept)            -2.709021   0.525089  -5.159 2.48e-07 ***
-DCrequired              1.691735   0.327263   5.169 2.35e-07 ***
-SexMale                 0.049732   0.222861   0.223  0.82342    
-Age                     0.025907   0.008696   2.979  0.00289 ** 
-YearsWorking            0.009141   0.007013   1.303  0.19243    
-DC_outcome1            -0.543649   0.534828  -1.016  0.30939    
-DCrequired:DC_outcome1 -0.163754   0.583202  -0.281  0.77888    
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 676.84  on 492  degrees of freedom
-Residual deviance: 606.35  on 486  degrees of freedom
-AIC: 620.35
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
 
 Number of Fisher Scoring iterations: 4
 
-[1] "Model 3. TS_outcome = DCrequired Personal + DC_outcome."
-Area under the curve: 0.7015
-[1] "AUC: 0.701492910758966"
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
 
 	Shapiro-Wilk normality test
 
 data:  ds$residuals
-W = 0.90626, p-value < 2.2e-16
+W = 0.84765, p-value < 2.2e-16
 
 RStudioGD 
         2 
-null device 
-          1 
-null device 
-          1 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial(link = "logit"), data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf"
+RStudioGD 
+        2 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial(link = "logit"), data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf"
+RStudioGD 
+        2 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial(link = "logit"), data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf"
 RStudioGD 
         2 
 RStudioGD 
         2 
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial(link = "logit"), data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf"
+RStudioGD 
+        2 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial(link = "logit"), data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf"
+RStudioGD 
+        2 
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/1-boxplot-predicted-vs-observed.pdf}"
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf}"
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf}"
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf}"
+RStudioGD 
+        2 
+ents:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf"
+RStudioGD 
+        2 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial(link = "logit"), data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf"
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+RStudioGD 
+        2 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial(link = "logit"), data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf"
+RStudioGD 
+        2 
+
+Call:
+glm(formula = DC_outcome ~ Profession + Sex + Age + YearsWorking, 
+    family = binomial(link = "logit"), data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.5850  -0.8658  -0.5838   0.9885   2.1372  
+
+Coefficients:
+                 Estimate Std. Error z value Pr(>|z|)    
+(Intercept)      0.892672   0.547699   1.630 0.103131    
+ProfessionNurse -1.376337   0.364480  -3.776 0.000159 ***
+ProfessionPhys  -2.305367   0.587732  -3.922 8.76e-05 ***
+ProfessionPsych -1.175307   0.443440  -2.650 0.008039 ** 
+ProfessionSW    -0.077227   0.440593  -0.175 0.860860    
+SexMale         -1.015217   0.267622  -3.793 0.000149 ***
+Age             -0.015464   0.009296  -1.664 0.096209 .  
+YearsWorking     0.012007   0.007432   1.616 0.106194    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 609.10  on 492  degrees of freedom
+Residual deviance: 548.75  on 485  degrees of freedom
+AIC: 564.75
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf"
+[1] "t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf"
+RStudioGD 
+        2 
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/1-boxplot-predicted-vs-observed.pdf}"
+[1] "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking"
+Area under the curve: 0.6454
+[1] "AUC: 0.64535446205171"
+
+	Shapiro-Wilk normality test
+
+data:  ds$residuals
+W = 0.84765, p-value < 2.2e-16
+
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-density-residuals-pearson.pdf}"
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-calibration.pdf}"
+[1] "\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images/Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking-boxplot-predicted-vs-observed.pdf}"
 RStudioGD 
         2 
