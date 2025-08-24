@@ -199,6 +199,12 @@ print(ChiST)
   analyseModel(ds[idx==1,], ds$TS_outcome[idx==1], model4b, "Model 4b-prediction. Training set. TS, the individualised characteristics of HCPs and DC.")
   analyseModel(ds[idx==2,], ds$TS_outcome[idx==2], model4b, "Model 4b-prediction. Testing set. TS, the individualised characteristics of HCPs and DC.")
 
+  ds$observed=as.numeric(as.character(observed)) 
+  ds$predicted=predict(model4b, newdata = ds, type="response")
+  
+  library(pROC)
+  print(paste("AUC:", aucValue=auc(roc(ds$observed[idx==1], ds$predicted[idx==1]))))
+  print(paste("AUC:", aucValue=auc(roc(ds$observed[idx==2], ds$predicted[idx==2]))))
   
   ##### Model 4c: DC_required vs DC_outcome
   ds$DCrequired <- ifelse(ds$Profession %in% c("Nurse", "Phys"), 1, 0)

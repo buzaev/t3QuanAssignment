@@ -6,7 +6,8 @@ packageRef = data.frame(loadedPackages)
 sink(fileName)
 print(toBibtex(citation()))
 for (i in 1:nrow(packageRef)){
-  print( toBibtex(citation(packageRef$loadedPackages[i])))
+#    print (packageRef$loadedPackages[i])
+    print( toBibtex(citation(packageRef$loadedPackages[i])))
 }
 sink()
 
