@@ -184,10 +184,16 @@ analyseModel=function(ds, observed, model, modelName) {
   print (anova(model, test="Chisq"))
   print ("################## ROC area under curve")
   print(paste("AUC =",aucValue))
-  sink()
+  
   #close(outputFile)
+  print ("\n\n############ beta, OR and p-values")
+  a= data.frame(cbind(round(coef(model),2), 	 round(exp(coef(model)),2), round(summary(model)$coefficients[,4],3), round(	exp(summary(model)$coefficients[,1] - 1.96*summary(model)$coefficients[,2]),2), 	round(exp(summary(model)$coefficients[,1] + 1.96*summary(model)$coefficients[,2]),2) ))
+  colnames(a) <- c("beta", "OR", "p-value", "OR CI -0.95", "OR CI +0.95")
+  print (a)
   
+  print(convertToLatex(a, paste("Short model summary. ", modelName)))
   
+  sink()
 }
 
 

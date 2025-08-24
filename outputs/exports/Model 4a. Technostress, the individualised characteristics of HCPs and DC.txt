@@ -64,3 +64,15 @@ DC_outcome    1    6.270       484     599.80  0.012282 *
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 [1] "################## ROC area under curve"
 [1] "AUC = 0.711934945788157"
+[1] "\n\n############ beta, OR and p-values"
+                 beta   OR p-value OR CI -0.95 OR CI +0.95
+(Intercept)     -1.93 0.14   0.001        0.05        0.44
+ProfessionNurse  0.94 2.55   0.016        1.19        5.47
+ProfessionPhys   1.07 2.92   0.029        1.11        7.67
+ProfessionPsych -0.80 0.45   0.113        0.17        1.21
+ProfessionSW    -0.77 0.46   0.142        0.17        1.29
+SexMale          0.04 1.04   0.875        0.67        1.61
+Age              0.03 1.03   0.002        1.01        1.04
+YearsWorking     0.01 1.01   0.221        0.99        1.02
+DC_outcome1     -0.57 0.57   0.013        0.36        0.89
+[1] "\\begin{table}[!htb]\n\\caption{Short model summary.  Model 4a. Technostress, the individualised characteristics of HCPs and DC}\n\\label{Short model summary.  Model 4a. Technostress, the individualised characteristics of HCPs and DC}\n\\begin{threeparttable}\n\\begin{tabular}{ccccc}\n% используй {p{3cm}p{7cm}} если нужно переносить с newline \n\\toprule\nbeta&OR&p-value&OR CI -0.95&OR CI +0.95\\\\\n\\midrule\n-1.93&0.14&0.001&0.05&0.44\\\\\n0.94&2.55&0.016&1.19&5.47\\\\\n1.07&2.92&0.029&1.11&7.67\\\\\n-0.8&0.45&0.113&0.17&1.21\\\\\n-0.77&0.46&0.142&0.17&1.29\\\\\n0.04&1.04&0.875&0.67&1.61\\\\\n0.03&1.03&0.002&1.01&1.04\\\\\n0.01&1.01&0.221&0.99&1.02\\\\\n-0.57&0.57&0.013&0.36&0.89\\\\\n\\bottomrule\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}\n"

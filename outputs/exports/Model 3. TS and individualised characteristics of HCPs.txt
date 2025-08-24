@@ -1,4 +1,4 @@
-[1] "Model 3. TS and individualised characteristics of HCPs"
+	[1] "Model 3. TS and individualised characteristics of HCPs"
 [1] "################### summary"
 
 Call:
@@ -61,3 +61,14 @@ YearsWorking  1    1.132       485     606.07  0.287327
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 [1] "################## ROC area under curve"
 [1] "AUC = 0.702351959966639"
+[1] "\n\n############ beta, OR and p-values"
+                 beta   OR p-value OR CI -0.95 OR CI +0.95
+(Intercept)     -2.28 0.10   0.000        0.03        0.30
+ProfessionNurse  1.09 2.98   0.004        1.41        6.31
+ProfessionPhys   1.30 3.68   0.007        1.43        9.45
+ProfessionPsych -0.63 0.53   0.201        0.20        1.40
+ProfessionSW    -0.75 0.47   0.150        0.17        1.31
+SexMale          0.13 1.13   0.567        0.74        1.75
+Age              0.03 1.03   0.001        1.01        1.05
+YearsWorking     0.01 1.01   0.288        0.99        1.02
+[1] "\\begin{table}[!htb]\n\\caption{Short model summary.  Model 3. TS and individualised characteristics of HCPs}\n\\label{Short model summary.  Model 3. TS and individualised characteristics of HCPs}\n\\begin{threeparttable}\n\\begin{tabular}{ccccc}\n% используй {p{3cm}p{7cm}} если нужно переносить с newline \n\\toprule\nbeta&OR&p-value&OR CI -0.95&OR CI +0.95\\\\\n\\midrule\n-2.28&0.1&0&0.03&0.3\\\\\n1.09&2.98&0.004&1.41&6.31\\\\\n1.3&3.68&0.007&1.43&9.45\\\\\n-0.63&0.53&0.201&0.2&1.4\\\\\n-0.75&0.47&0.15&0.17&1.31\\\\\n0.13&1.13&0.567&0.74&1.75\\\\\n0.03&1.03&0.001&1.01&1.05\\\\\n0.01&1.01&0.288&0.99&1.02\\\\\n\\bottomrule\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}\n"

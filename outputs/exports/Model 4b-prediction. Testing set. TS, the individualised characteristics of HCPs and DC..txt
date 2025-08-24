@@ -64,3 +64,15 @@ DC_outcome    1    5.622       378     469.48  0.017736 *
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 [1] "################## ROC area under curve"
 [1] "AUC = 0.688770053475936"
+[1] "\n\n############ beta, OR and p-values"
+                 beta   OR p-value OR CI -0.95 OR CI +0.95
+(Intercept)     -1.83 0.16   0.004        0.05        0.56
+ProfessionNurse  0.62 1.85   0.150        0.80        4.29
+ProfessionPhys   0.40 1.50   0.463        0.51        4.39
+ProfessionPsych -1.09 0.34   0.049        0.11        1.00
+ProfessionSW    -1.18 0.31   0.041        0.10        0.96
+SexMale         -0.11 0.90   0.677        0.54        1.49
+Age              0.03 1.03   0.004        1.01        1.05
+YearsWorking     0.01 1.01   0.091        1.00        1.03
+DC_outcome1     -0.61 0.54   0.019        0.32        0.90
+[1] "\\begin{table}[!htb]\n\\caption{Short model summary.  Model 4b-prediction. Testing set. TS, the individualised characteristics of HCPs and DC.}\n\\label{Short model summary.  Model 4b-prediction. Testing set. TS, the individualised characteristics of HCPs and DC.}\n\\begin{threeparttable}\n\\begin{tabular}{ccccc}\n% используй {p{3cm}p{7cm}} если нужно переносить с newline \n\\toprule\nbeta&OR&p-value&OR CI -0.95&OR CI +0.95\\\\\n\\midrule\n-1.83&0.16&0.004&0.05&0.56\\\\\n0.62&1.85&0.15&0.8&4.29\\\\\n0.4&1.5&0.463&0.51&4.39\\\\\n-1.09&0.34&0.049&0.11&1\\\\\n-1.18&0.31&0.041&0.1&0.96\\\\\n-0.11&0.9&0.677&0.54&1.49\\\\\n0.03&1.03&0.004&1.01&1.05\\\\\n0.01&1.01&0.091&1&1.03\\\\\n-0.61&0.54&0.019&0.32&0.9\\\\\n\\bottomrule\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}\n"

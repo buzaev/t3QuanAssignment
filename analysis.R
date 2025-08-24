@@ -160,12 +160,12 @@ print(ChiST)
   
 ##### model 4 with  interactions ###  
   
-  model4a = glm(TS_outcome ~
+  model4ai = glm(TS_outcome ~
                   Profession+ 
                   Sex +     
                   Age+
                   YearsWorking+ 
-                  DC_outcome+# +
+                  DC_outcome#+# +
         #        Profession*YearsWorking#+ 
         #         Profession*DC_outcome#+
         #         Profession*Age+
@@ -243,4 +243,7 @@ print(ChiST)
   ####### CREDIT R packages authors ####################
   source ("libraries/exportUsedPackagesBibtexReferences.R") #my function to cite authors of packages
   exportUsedPackagesBibtexReferences ("outputs/exports/rCitation.bib")
+  
+  
+  
   
