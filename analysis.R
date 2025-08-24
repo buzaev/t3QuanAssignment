@@ -157,32 +157,36 @@ print(ChiST)
   model4a = glm(TS_outcome ~Profession + Sex + Age + YearsWorking + DC_outcome, 
                data = ds, 
                family=binomial(link = 'logit'))
-  
-##### model 4 with  interactions ###  
-  
-  model4ai = glm(TS_outcome ~
-                  Profession+ 
-                  Sex +     
-                  Age+
-                  YearsWorking+ 
-                  DC_outcome#+# +
-        #        Profession*YearsWorking#+ 
-        #         Profession*DC_outcome#+
-        #         Profession*Age+
-        #         Profession*Sex+
-        #         Sex*Age+ 
-        #         Sex*YearsWorking +
-        #        Sex*DC_outcome #+
-        #         Age*YearsWorking+
-        #         Age*DC_outcome +
-        #         YearsWorking*DC_outcome
-               ,data = ds, binomial(link = 'logit'))
-  
-  
   summary(model4a)
   source("libraries/analyseModel.R")
   analyseModel(ds, ds$TS_outcome, model4a, "Model 4a. Technostress, the individualised characteristics of HCPs and DC")
   
+  
+  ##### models with  interactions ###  
+  
+  model2i = glm(DC_outcome ~
+                   Profession+ 
+                   Sex +     
+                   Age+
+                   YearsWorking+ 
+                   Profession*Sex
+                   ,data = ds, binomial(link = 'logit'))
+  summary(model2i)
+
+  source("libraries/analyseModel.R")
+  analyseModel(ds, ds$DC_outcome, model2ai, "Model 2i. with interaction")
+  
+  
+  model4i = glm(TS_outcome ~
+   #                Profession+ 
+                   Sex +     
+                   Age+
+                   YearsWorking+ 
+                   DCrequired*Sex
+                 ,data = ds, binomial(link = 'logit'))
+  summary(model4i)
+  source("libraries/analyseModel.R")
+  analyseModel(ds, ds$TS_outcome, model4ai, "Model 4i. Required DC and Sex Interaction")
   
   
   ####### Model 4b: prediction model with overfitting check ############
@@ -240,10 +244,14 @@ print(ChiST)
   plot(rocCurve, col="blue", main="ROC")
   
   
+  
   ####### CREDIT R packages authors ####################
   source ("libraries/exportUsedPackagesBibtexReferences.R") #my function to cite authors of packages
   exportUsedPackagesBibtexReferences ("outputs/exports/rCitation.bib")
   
   
+  
+  
+ 
   
   

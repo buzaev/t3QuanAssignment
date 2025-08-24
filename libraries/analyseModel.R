@@ -34,7 +34,7 @@ analyseModel=function(ds, observed, model, modelName) {
     )
   plot(gg)
   plotfilename=paste(dir_plots,"/",modelName, "-density-residuals-pearson.pdf", sep="")
-  print (paste("\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images","/",modelName, "-density-residuals-pearson.pdf}", sep=""))
+  print (paste("\\includegraphics[width=1\\linewidth]{t3-quan-assessment/R-script/outputs/plots","/",modelName, "-density-residuals-pearson.pdf}", sep=""))
   pdf(plotfilename,6,4)
   print(gg, newpage=FALSE)
   dev.off()
@@ -66,7 +66,7 @@ analyseModel=function(ds, observed, model, modelName) {
     theme_minimal()
   plot(gg)
   plotfilename=paste(dir_plots,"/",modelName, "-calibration.pdf", sep="")
-  print (paste("\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images","/",modelName, "-calibration.pdf}", sep=""))
+  print (paste("\\includegraphics[width=1\\linewidth]{t3-quan-assessment/R-script/outputs/plots","/",modelName, "-calibration.pdf}", sep=""))
   pdf(plotfilename,6,4)
   print(gg, newpage=FALSE)
   dev.off()
@@ -85,7 +85,7 @@ analyseModel=function(ds, observed, model, modelName) {
          shape="")#,
   plot(gg) 
   plotfilename=paste(dir_plots,"/",modelName,"-boxplot-predicted-vs-observed.pdf", sep="")
-  print (paste("\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images","/",modelName, "-boxplot-predicted-vs-observed.pdf}", sep=""))
+  print (paste("\\includegraphics[width=1\\linewidth]{t3-quan-assessment/R-script/outputs/plots","/",modelName, "-boxplot-predicted-vs-observed.pdf}", sep=""))
   pdf(plotfilename,6,4)
   print(gg, newpage=FALSE)
   dev.off()
@@ -110,7 +110,7 @@ analyseModel=function(ds, observed, model, modelName) {
     )
   plot(gg)
   plotfilename=paste(dir_plots,"/",modelName, "-density-residuals-profession.pdf", sep="")
-  print (paste("\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images","/",modelName, "-density-residuals-profession}", sep=""))
+  print (paste("\\includegraphics[width=1\\linewidth]{t3-quan-assessment/R-script/outputs/plots","/",modelName, "-density-residuals-profession}", sep=""))
   pdf(plotfilename,6,4)
   print(gg, newpage=FALSE)
   dev.off()
@@ -133,7 +133,7 @@ analyseModel=function(ds, observed, model, modelName) {
     )
   plot(gg)
   plotfilename=paste(dir_plots,"/",modelName, "-density-residuals-DC_o.pdf", sep="")
-  print (paste("\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images","/",modelName, "-density-residuals-DC_o}", sep=""))
+  print (paste("\\includegraphics[width=1\\linewidth]{t3-quan-assessment/R-script/outputs/plots","/",modelName, "-density-residuals-DC_o}", sep=""))
   pdf(plotfilename,6,4)
   print(gg, newpage=FALSE)
   dev.off()
@@ -158,7 +158,7 @@ analyseModel=function(ds, observed, model, modelName) {
     )
   plot(gg)
   plotfilename=paste(dir_plots,"/",modelName, "-density-residuals-sex.pdf", sep="")
-  print (paste("\\includegraphics[width=1\\linewidth]{t3-quan-assessment/images","/",modelName, "-density-residuals-sex}", sep=""))
+  print (paste("\\includegraphics[width=1\\linewidth]{t3-quan-assessment/R-script/outputs/plots","/",modelName, "-density-residuals-sex}", sep=""))
   pdf(plotfilename,6,4)
   print(gg, newpage=FALSE)
   dev.off()
@@ -187,13 +187,39 @@ analyseModel=function(ds, observed, model, modelName) {
   
   #close(outputFile)
   print ("\n\n############ beta, OR and p-values")
-  a= data.frame(cbind(round(coef(model),2), 	 round(exp(coef(model)),2), round(summary(model)$coefficients[,4],3), round(	exp(summary(model)$coefficients[,1] - 1.96*summary(model)$coefficients[,2]),2), 	round(exp(summary(model)$coefficients[,1] + 1.96*summary(model)$coefficients[,2]),2) ))
-  colnames(a) <- c("beta", "OR", "p-value", "OR CI -0.95", "OR CI +0.95")
+  a= data.frame(cbind(rownames(summary(model)$coefficients), round(coef(model),2), 	 round(exp(coef(model)),2), round(summary(model)$coefficients[,4],3), round(	exp(summary(model)$coefficients[,1] - 1.96*summary(model)$coefficients[,2]),2), 	round(exp(summary(model)$coefficients[,1] + 1.96*summary(model)$coefficients[,2]),2) ))
+  colnames(a) <- c("Variable","beta", "OR", "p-value", "OR CI -0.95", "OR CI +0.95")
   print (a)
   
-  print(convertToLatex(a, paste("Short model summary. ", modelName)))
+  cat(convertToLatex(a, paste("Short model summary. ", modelName)))
   
   sink()
+  
+  colnames(a) <- c("variable","beta", "or", "p-value", "lowCI", "highCI")
+  a$or=as.numeric(a$or)
+  a$lowCI=as.numeric(a$lowCI)
+  a$highCI=as.numeric(a$highCI)
+  
+  variable=a$variable
+  gg = ggplot(a, aes(x = or, y = variable)) +
+   geom_vline(aes(xintercept = 1), size = .25, linetype = "dashed") +
+    geom_errorbarh (aes(xmax = highCI, xmin = lowCI), size = .5, height = .2, color = "black") +
+    geom_point(size = 3.5, color = "black") +
+    theme_bw() +
+    theme(panel.grid.minor = element_blank()) +
+    scale_y_discrete (labels = variable) +
+    scale_x_continuous(breaks = c(0.2,0.25,0.33,0.5,0,1,2,3,4,5), limits = c(min(a$lowCI), max(a$highCI)))+
+    coord_trans(x = "log10") +
+    ylab("") +
+    xlab("Odds ratio") +
+    ggtitle(modelName)
+   plot(gg)
+   plotfilename=paste(dir_plots,"/",modelName, "-treeplot.pdf", sep="")
+   print (paste("\\includegraphics[width=1\\linewidth]{t3-quan-assessment/R-script/outputs/plots","/",modelName, "-treeplot}", sep=""))
+   pdf(plotfilename,6,4)
+   print(gg, newpage=FALSE)
+   dev.off()
+  
 }
 
 

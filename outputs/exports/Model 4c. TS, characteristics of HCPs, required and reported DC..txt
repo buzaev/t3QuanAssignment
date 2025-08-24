@@ -60,11 +60,29 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 [1] "################## ROC area under curve"
 [1] "AUC = 0.711125938281902"
 [1] "\n\n############ beta, OR and p-values"
-                        beta   OR p-value OR CI -0.95 OR CI +0.95
-(Intercept)            -2.61 0.07   0.000        0.03        0.20
-DCrequired              1.64 5.16   0.000        2.90        9.17
-Age                     0.03 1.03   0.002        1.01        1.05
-YearsWorking            0.01 1.01   0.243        0.99        1.02
-DC_outcome1            -0.30 0.74   0.472        0.33        1.67
-DCrequired:DC_outcome1 -0.35 0.71   0.479        0.27        1.84
-[1] "\\begin{table}[!htb]\n\\caption{Short model summary.  Model 4c. TS, characteristics of HCPs, required and reported DC.}\n\\label{Short model summary.  Model 4c. TS, characteristics of HCPs, required and reported DC.}\n\\begin{threeparttable}\n\\begin{tabular}{ccccc}\n% используй {p{3cm}p{7cm}} если нужно переносить с newline \n\\toprule\nbeta&OR&p-value&OR CI -0.95&OR CI +0.95\\\\\n\\midrule\n-2.61&0.07&0&0.03&0.2\\\\\n1.64&5.16&0&2.9&9.17\\\\\n0.03&1.03&0.002&1.01&1.05\\\\\n0.01&1.01&0.243&0.99&1.02\\\\\n-0.3&0.74&0.472&0.33&1.67\\\\\n-0.35&0.71&0.479&0.27&1.84\\\\\n\\bottomrule\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}\n"
+                                     Variable  beta   OR p-value OR CI -0.95 OR CI +0.95
+(Intercept)                       (Intercept) -2.61 0.07       0        0.03         0.2
+DCrequired                         DCrequired  1.64 5.16       0         2.9        9.17
+Age                                       Age  0.03 1.03   0.002        1.01        1.05
+YearsWorking                     YearsWorking  0.01 1.01   0.243        0.99        1.02
+DC_outcome1                       DC_outcome1  -0.3 0.74   0.472        0.33        1.67
+DCrequired:DC_outcome1 DCrequired:DC_outcome1 -0.35 0.71   0.479        0.27        1.84
+\begin{table}[!htb]
+\caption{Short model summary.  Model 4c. TS, characteristics of HCPs, required and reported DC.}
+\label{Short model summary.  Model 4c. TS, characteristics of HCPs, required and reported DC.}
+\begin{threeparttable}
+\begin{tabular}{cccccc}
+% используй {p{3cm}p{7cm}} если нужно переносить с newline 
+\toprule
+Variable&beta&OR&p-value&OR CI -0.95&OR CI +0.95\\
+\midrule
+(Intercept)&-2.61&0.07&0&0.03&0.2\\
+DCrequired&1.64&5.16&0&2.9&9.17\\
+Age&0.03&1.03&0.002&1.01&1.05\\
+YearsWorking&0.01&1.01&0.243&0.99&1.02\\
+DC_outcome1&-0.3&0.74&0.472&0.33&1.67\\
+DCrequired:DC_outcome1&-0.35&0.71&0.479&0.27&1.84\\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}

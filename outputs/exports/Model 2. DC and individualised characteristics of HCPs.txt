@@ -62,13 +62,33 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 [1] "################## ROC area under curve"
 [1] "AUC = 0.700030868961259"
 [1] "\n\n############ beta, OR and p-values"
-                 beta   OR p-value OR CI -0.95 OR CI +0.95
-(Intercept)      0.89 2.44   0.103        0.83        7.14
-ProfessionNurse -1.38 0.25   0.000        0.12        0.52
-ProfessionPhys  -2.31 0.10   0.000        0.03        0.32
-ProfessionPsych -1.18 0.31   0.008        0.13        0.74
-ProfessionSW    -0.08 0.93   0.861        0.39        2.20
-SexMale         -1.02 0.36   0.000        0.21        0.61
-Age             -0.02 0.98   0.096        0.97        1.00
-YearsWorking     0.01 1.01   0.106        1.00        1.03
-[1] "\\begin{table}[!htb]\n\\caption{Short model summary.  Model 2. DC and individualised characteristics of HCPs}\n\\label{Short model summary.  Model 2. DC and individualised characteristics of HCPs}\n\\begin{threeparttable}\n\\begin{tabular}{ccccc}\n% используй {p{3cm}p{7cm}} если нужно переносить с newline \n\\toprule\nbeta&OR&p-value&OR CI -0.95&OR CI +0.95\\\\\n\\midrule\n0.89&2.44&0.103&0.83&7.14\\\\\n-1.38&0.25&0&0.12&0.52\\\\\n-2.31&0.1&0&0.03&0.32\\\\\n-1.18&0.31&0.008&0.13&0.74\\\\\n-0.08&0.93&0.861&0.39&2.2\\\\\n-1.02&0.36&0&0.21&0.61\\\\\n-0.02&0.98&0.096&0.97&1\\\\\n0.01&1.01&0.106&1&1.03\\\\\n\\bottomrule\n\\end{tabular}\n\\end{threeparttable}\n\\end{table}\n"
+                       Variable  beta   OR p-value OR CI -0.95 OR CI +0.95
+(Intercept)         (Intercept)  0.89 2.44   0.103        0.83        7.14
+ProfessionNurse ProfessionNurse -1.38 0.25       0        0.12        0.52
+ProfessionPhys   ProfessionPhys -2.31  0.1       0        0.03        0.32
+ProfessionPsych ProfessionPsych -1.18 0.31   0.008        0.13        0.74
+ProfessionSW       ProfessionSW -0.08 0.93   0.861        0.39         2.2
+SexMale                 SexMale -1.02 0.36       0        0.21        0.61
+Age                         Age -0.02 0.98   0.096        0.97           1
+YearsWorking       YearsWorking  0.01 1.01   0.106           1        1.03
+\begin{table}[!htb]
+\caption{Short model summary.  Model 2. DC and individualised characteristics of HCPs}
+\label{Short model summary.  Model 2. DC and individualised characteristics of HCPs}
+\begin{threeparttable}
+\begin{tabular}{cccccc}
+% используй {p{3cm}p{7cm}} если нужно переносить с newline 
+\toprule
+Variable&beta&OR&p-value&OR CI -0.95&OR CI +0.95\\
+\midrule
+(Intercept)&0.89&2.44&0.103&0.83&7.14\\
+ProfessionNurse&-1.38&0.25&0&0.12&0.52\\
+ProfessionPhys&-2.31&0.1&0&0.03&0.32\\
+ProfessionPsych&-1.18&0.31&0.008&0.13&0.74\\
+ProfessionSW&-0.08&0.93&0.861&0.39&2.2\\
+SexMale&-1.02&0.36&0&0.21&0.61\\
+Age&-0.02&0.98&0.096&0.97&1\\
+YearsWorking&0.01&1.01&0.106&1&1.03\\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
