@@ -109,7 +109,3 @@ ProfessionSW:SexMale&0.36&1.43&0.745&0.16&12.6\\
 \end{tabular}
 \end{threeparttable}
 \end{table}
-
-
-the inclusion of interaction terms might improve the model's overall fit.
-indicating that the model has improved in distinguishing between the classes

@@ -1,0 +1,98 @@
+[1] "Model 4i. TS include Profession and Sex Interaction"
+[1] "################### summary"
+
+Call:
+glm(formula = TS_outcome ~ Sex + Age + YearsWorking + DCrequired * 
+    Sex + DC_outcome * Sex + DC_outcome, family = binomial(link = "logit"), 
+    data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.6580  -1.0376  -0.5324   1.0565   2.0702  
+
+Coefficients:
+                     Estimate Std. Error z value Pr(>|z|)    
+(Intercept)         -2.332549   0.488756  -4.772 1.82e-06 ***
+SexMale             -0.751812   0.524575  -1.433  0.15181    
+Age                  0.026968   0.008794   3.067  0.00216 ** 
+YearsWorking         0.009421   0.007105   1.326  0.18485    
+DCrequired           1.266653   0.268180   4.723 2.32e-06 ***
+DC_outcome1         -0.570609   0.247585  -2.305  0.02118 *  
+SexMale:DCrequired   0.988668   0.566278   1.746  0.08083 .  
+SexMale:DC_outcome1  0.012865   0.598534   0.021  0.98285    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 676.84  on 492  degrees of freedom
+Residual deviance: 599.65  on 485  degrees of freedom
+AIC: 615.65
+
+Number of Fisher Scoring iterations: 4
+
+[1] "Odds ratios"
+[1] "################### exp(coef(model))"
+                          [,1]       [,2]      [,3]
+(Intercept)         0.09704807 0.03723484 0.2529440
+SexMale             0.47151147 0.16864175 1.3183157
+Age                 1.02733541 1.00978051 1.0451955
+YearsWorking        1.00946563 0.99550533 1.0236217
+DCrequired          3.54895343 2.09807427 6.0031576
+DC_outcome1         0.56518136 0.34788815 0.9181973
+SexMale:DCrequired  2.68765155 0.88582307 8.1545301
+SexMale:DC_outcome1 1.01294775 0.31340376 3.2739338
+[1] "################## anova() function on the model to analyze the table of deviance"
+Analysis of Deviance Table
+
+Model: binomial, link: logit
+
+Response: TS_outcome
+
+Terms added sequentially (first to last)
+
+
+               Df Deviance Resid. Df Resid. Dev  Pr(>Chi)    
+NULL                             492     676.84              
+Sex             1    0.582       491     676.26  0.445602    
+Age             1   10.581       490     665.68  0.001143 ** 
+YearsWorking    1    0.552       489     665.12  0.457552    
+DCrequired      1   56.280       488     608.84 6.284e-14 ***
+DC_outcome      1    5.901       487     602.94  0.015134 *  
+Sex:DCrequired  1    3.290       486     599.65  0.069707 .  
+Sex:DC_outcome  1    0.000       485     599.65  0.982856    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "################## ROC area under curve"
+[1] "AUC = 0.713894912427023"
+[1] "\n\n############ beta, OR and p-values"
+                               Variable  beta   OR p-value OR CI -0.95 OR CI +0.95
+(Intercept)                 (Intercept) -2.33  0.1       0        0.04        0.25
+SexMale                         SexMale -0.75 0.47   0.152        0.17        1.32
+Age                                 Age  0.03 1.03   0.002        1.01        1.05
+YearsWorking               YearsWorking  0.01 1.01   0.185           1        1.02
+DCrequired                   DCrequired  1.27 3.55       0         2.1           6
+DC_outcome1                 DC_outcome1 -0.57 0.57   0.021        0.35        0.92
+SexMale:DCrequired   SexMale:DCrequired  0.99 2.69   0.081        0.89        8.15
+SexMale:DC_outcome1 SexMale:DC_outcome1  0.01 1.01   0.983        0.31        3.27
+\begin{table}[!htb]
+\caption{Short model summary.  Model 4i. TS include Profession and Sex Interaction}
+\label{Short model summary.  Model 4i. TS include Profession and Sex Interaction}
+\begin{threeparttable}
+\begin{tabular}{cccccc}
+% используй {p{3cm}p{7cm}} если нужно переносить с newline 
+\toprule
+Variable&beta&OR&p-value&OR CI -0.95&OR CI +0.95\\
+\midrule
+(Intercept)&-2.33&0.1&0&0.04&0.25\\
+SexMale&-0.75&0.47&0.152&0.17&1.32\\
+Age&0.03&1.03&0.002&1.01&1.05\\
+YearsWorking&0.01&1.01&0.185&1&1.02\\
+DCrequired&1.27&3.55&0&2.1&6\\
+DC_outcome1&-0.57&0.57&0.021&0.35&0.92\\
+SexMale:DCrequired&0.99&2.69&0.081&0.89&8.15\\
+SexMale:DC_outcome1&0.01&1.01&0.983&0.31&3.27\\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}

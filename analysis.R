@@ -176,18 +176,17 @@ print(ChiST)
   source("libraries/analyseModel.R")
   analyseModel(ds, ds$DC_outcome, model2ai, "Model 2i. with interaction")
   
-  
+  ds$DCrequired <- ifelse(ds$Profession %in% c("Nurse", "Phys"), 1, 0)
   model4i = glm(TS_outcome ~
-   #                Profession+ 
+                   Profession+ 
                    Sex +     
                    Age+
                    YearsWorking+ 
-                   DCrequired*Sex
+                   DC_outcome
                  ,data = ds, binomial(link = 'logit'))
   summary(model4i)
   source("libraries/analyseModel.R")
-  analyseModel(ds, ds$TS_outcome, model4ai, "Model 4i. Required DC and Sex Interaction")
-  
+  analyseModel(ds, ds$TS_outcome, model4i, "Model 4i. TS include Profession and Sex Interaction")
   
   ####### Model 4b: prediction model with overfitting check ############
   
@@ -243,6 +242,22 @@ print(ChiST)
   print(paste("AUC:", aucValue))
   plot(rocCurve, col="blue", main="ROC")
   
+  
+  library(brms)
+  model4dsex <- brm(
+    TS_outcome ~ Profession + Age + YearsWorking + DC_outcome + (1 | Sex ),
+    data = ds,
+    family = bernoulli()
+  )
+  summary(model4dsex)
+  
+  predicted = as.vector(fitted(model4dsex, newdata = ds, summary = TRUE)[,1]) # the first column is predictions
+  observed=as.vector(as.numeric(as.character(ds$TS_outcome)))
+  library(pROC)
+  rocCurve=roc(observed, predicted)
+  aucValue=auc(rocCurve)
+  print(paste("AUC:", aucValue))
+  plot(rocCurve, col="blue", main="ROC")
   
   
   ####### CREDIT R packages authors ####################
