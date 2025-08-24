@@ -180,6 +180,7 @@ print(ChiST)
   model4i = glm(TS_outcome ~
                    Profession+ 
                    Sex +     
+                  Profession*Sex+
                    Age+
                    YearsWorking+ 
                    DC_outcome
