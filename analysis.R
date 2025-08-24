@@ -7,8 +7,6 @@ library(gdata) #trim
 
 ############## Loading and Cleaning Data ##################
 setwd ("/Users/garrybear/Documents/#UCL-DBA-thesis/overleaf/t3-quan-assessment/R-script")
-print (R.version)
-writeLines(toBibtex(citation()), "outputs/R_citation.bib")
 
 #this is redirect console to a file console.txt
 dir_output_prefix=paste("outputs/",Sys.Date(), sep="")
@@ -24,8 +22,8 @@ dir_data=paste("data/","", sep="")
 subsetName="all"
 filename="simulatedData.csv"
 
-zz = file(paste(dir_output_prefix, "/", "exports/console.txt",sep=""), open="wt")
-sink(zz,  split=TRUE)
+#zz = file(paste(dir_output_prefix, "/", "exports/console.txt",sep=""), open="wt")
+#sink(zz,  split=TRUE)
 
 
 #load and prepare ALL patients table
@@ -126,111 +124,114 @@ dev.off()
 #R language glm does automatically
 #logistic regression because dc_outcome is binary
 
-model1 = glm(DC_outcome ~ Profession +Sex + Age+ YearsWorking, data = ds, binomial(link = 'logit'))
-summary(model1)
+model2 = glm(DC_outcome ~ Profession +Sex + Age+ YearsWorking, data = ds, binomial(link = 'logit'))
+summary(model2)
 source("libraries/analyseModel.R")
-analyseModel(ds, ds$TS_outcome, model1, "Model 1. DC_outcome = Profession +Sex + Age+ YearsWorking")
+analyseModel(ds, ds$DC_outcome, model2, "Model 2. DC and individualised characteristics of HCPs")
 
-  
-  
-  #TS vs individual
-  model2 = glm(TS_outcome ~ Profession +Sex + Age+ YearsWorking, data = ds, family = binomial)
-  summary(model2)
-  source("libraries/analyseModel.R")
-  analyseModel(ds, ds$TS_outcome, model2, "Model 2. TS_outcome = Profession +Sex + Age+ YearsWorking")
-  
 
+############## Question 2.3 Technostress and the individualised characteristics of health professionals  
+
+model3 = glm(TS_outcome ~ Profession + Sex + Age + YearsWorking, data = ds, binomial(link = 'logit'))
+summary(model3)
+source("libraries/analyseModel.R")
+analyseModel(ds, ds$TS_outcome, model3, "Model 3. TS and individualised characteristics of HCPs")
+
+
+tableOutcome = table(ds$DC_outcome, ds$Sex)
+print(tableOutcome)
+latex=convertToLatex(tableOutcome,"2x2 Table")
+cat(latex)
+ChiST = chisq.test(tableOutcome)
+print(ChiST)
+
+### DC=1 males = 23/(111+23)
+### DC=1 females = 128/(230+129)
+!!!!
+
+
+############## Question 2.4 Technostress, the individualised characteristics of HCPs and DC
+
+##### model 4a no interactions ###
+
+  model4a = glm(TS_outcome ~Profession + Sex + Age + YearsWorking + DC_outcome, 
+               data = ds, 
+               family=binomial(link = 'logit'))
   
+##### model 4 with  interactions ###  
   
-  # model 3
-  model3 = glm(TS_outcome ~Profession+ Sex + Age+ YearsWorking+ DC_outcome, data = ds, family=binomial)
-  #model3 = glm(TS_outcome ~Profession:DC_outcome+Profession+ Sex + Age+ YearsWorking+ DC_outcome, data = ds, binomial(link = 'logit'))
-  #model3 = glm(TS_outcome ~Profession+ Sex + Age+ YearsWorking+ DC_outcome, data = ds, binomial(link = 'logit'))
-  
-  
-  model3 = glm(TS_outcome ~
+  model4a = glm(TS_outcome ~
                   Profession+ 
                   Sex +     
                   Age+
                   YearsWorking+ 
-                  DC_outcome# +
-               
-         #        Profession*YearsWorking#+ 
-         #         Profession*DC_outcome#+
+                  DC_outcome+# +
+        #        Profession*YearsWorking#+ 
+        #         Profession*DC_outcome#+
         #         Profession*Age+
         #         Profession*Sex+
-
         #         Sex*Age+ 
         #         Sex*YearsWorking +
-        #         Sex*DC_outcome +
- 
+        #        Sex*DC_outcome #+
         #         Age*YearsWorking+
         #         Age*DC_outcome +
-  
         #         YearsWorking*DC_outcome
- 
-               
                ,data = ds, binomial(link = 'logit'))
   
   
-  summary(model3)
+  summary(model4a)
   source("libraries/analyseModel.R")
-  analyseModel(ds, ds$TS_outcome, model3, "Model 3. TS_outcome = Personal + DC_outcome.")
+  analyseModel(ds, ds$TS_outcome, model4a, "Model 4a. Technostress, the individualised characteristics of HCPs and DC")
+  
+  
+  
+  ####### Model 4b: prediction model with overfitting check ############
   
   
   set.seed(28467) # random seed
   idx = sample(2,nrow(ds),replace=TRUE,prob=c(.8,.2)) # data split
   table(idx)
-  model3 = glm(TS_outcome ~Profession+ Sex + Age+ YearsWorking+ DC_outcome, data = ds[idx==1,], family=binomial)
-  analyseModel(ds[idx==1,], ds$TS_outcome[idx==1], model3, "Model 3. TS_outcome = Personal + DC_outcome.")
-  analyseModel(ds[idx==2,], ds$TS_outcome[idx==2], model3, "Model 3. TS_outcome = Personal + DC_outcome.")
-  
+  model4b = glm(TS_outcome ~Profession+ Sex + Age+ YearsWorking+ DC_outcome, data = ds[idx==1,], family=binomial)
+  analyseModel(ds[idx==1,], ds$TS_outcome[idx==1], model4b, "Model 4b-prediction. Training set. TS, the individualised characteristics of HCPs and DC.")
+  analyseModel(ds[idx==2,], ds$TS_outcome[idx==2], model4b, "Model 4b-prediction. Testing set. TS, the individualised characteristics of HCPs and DC.")
 
-  ds$DCrequired <- ifelse(ds$Profession %in% c("MTP", "Nurse", "Phys"), 1, 0)
-  model3 = glm(TS_outcome ~
+  
+  ##### Model 4c: DC_required vs DC_outcome
+  ds$DCrequired <- ifelse(ds$Profession %in% c("Nurse", "Phys"), 1, 0)
+  model4c = glm(TS_outcome ~
                  DCrequired+ 
-                 Sex +     
+               #  Sex +     
                  Age+
-                 YearsWorking+ 
-                 DC_outcome +
-                 
+              #   YearsWorking+ 
+                 DC_outcome+ #+
                #         Profession*YearsWorking#+ 
-                        DCrequired*DC_outcome#+
+               #         DCrequired*DC_outcome#+
                #         Profession*Age+
                #         Profession*Sex+
-               
                #         Sex*Age+ 
                #         Sex*YearsWorking +
-               #         Sex*DC_outcome +
-               
+               #         Sex*DC_outcome #+
                #         Age*YearsWorking+
                #         Age*DC_outcome +
-               
                #         YearsWorking*DC_outcome
-               
-               
                ,data = ds, binomial(link = 'logit'))
-  
-  
-  summary(model3)
+  summary(model4c)
   source("libraries/analyseModel.R")
-  analyseModel(ds, ds$TS_outcome, model3, "Model 3. TS_outcome = DCrequired Personal + DC_outcome.")
+  analyseModel(ds, ds$TS_outcome, model4c, "Model 4c. TS, characteristics of HCPs, required and reported DC.")
   
   
   
+################# Model 4d: Hierarchical Logistic Model  ####### 
   
-  
-  
-################# 
   library(brms)
-  model_brms <- brm(
+  model4d <- brm(
     TS_outcome ~ Sex + Age + YearsWorking + DC_outcome + (1 | Profession),
     data = ds,
     family = bernoulli()
   )
-  summary(model_brms)
-  analyseModel(ds, ds$TS_outcome, model_brms, "Model 3. Bayes. TS_outcome = DCrequired Personal + DC_outcome.")
-  predicted=fitted(model_brms, newdata = ds, re_formula = ~0)
+  summary(model4d)
+  
+  predicted = as.vector(fitted(model4d, newdata = ds, summary = TRUE)[,1]) # the first column is predictions
   observed=as.vector(as.numeric(as.character(ds$TS_outcome)))
   library(pROC)
   rocCurve=roc(observed, predicted)
@@ -239,6 +240,7 @@ analyseModel(ds, ds$TS_outcome, model1, "Model 1. DC_outcome = Profession +Sex +
   plot(rocCurve, col="blue", main="ROC")
   
   
-  
-  
+  ####### CREDIT R packages authors ####################
+  source ("libraries/exportUsedPackagesBibtexReferences.R") #my function to cite authors of packages
+  exportUsedPackagesBibtexReferences ("outputs/exports/rCitation.bib")
   

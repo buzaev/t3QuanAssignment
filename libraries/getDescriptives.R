@@ -1,6 +1,5 @@
-getDescriptives <- function(ds) 
-  #For each numeric column calculates descriptives
-{descriptive <- data.frame(
+getDescriptives = function(ds) 
+{descriptive = data.frame(
   Column = character(),
   Mean = numeric(),
   Sigma = numeric(),
@@ -11,30 +10,19 @@ getDescriptives <- function(ds)
   Shapiro = character(),
   stringsAsFactors = FALSE
 )
-
-# Iterate over each column of ds
 for (col_name in colnames(ds)) {
-  # Check if the column is numeric
- # if (is.numeric(ds[[col_name]])) {
   if (is.numeric(ds[[col_name]]) && !is.factor(ds[[col_name]])) {
-      # Extract the column
-    col_data <- ds[[col_name]]
-    
-    # Calculate statistics
-    mean_val <- mean(col_data, na.rm = TRUE)
-    sigma_val <- sd(col_data, na.rm = TRUE)
-    n_val <- sum(!is.na(col_data))
-    median_val <- median(col_data, na.rm = TRUE)
-    q1_val <- quantile(col_data, 0.25, na.rm = TRUE)
-    q3_val <- quantile(col_data, 0.75, na.rm = TRUE)
-    
-    # Perform Shapiro-Wilk normality test
-    shapiro_test <- shapiro.test(col_data)
-    shapiro_result <- ifelse(shapiro_test$p.value > 0.05, "normal", "not normal")
-    shapiro_result <- ifelse(shapiro_test$p.value > 0.05, paste(round(shapiro_test$p.value,7), " (normal)"), paste(round(shapiro_test$p.value,3), " (not normal)"))
-    
-    # Add the results as a new row in the descriptive dataframe
-    descriptive <- rbind(descriptive, data.frame(
+    col_data = ds[[col_name]]
+    mean_val = mean(col_data, na.rm = TRUE)
+    sigma_val = sd(col_data, na.rm = TRUE)
+    n_val = sum(!is.na(col_data))
+    median_val = median(col_data, na.rm = TRUE)
+    q1_val = quantile(col_data, 0.25, na.rm = TRUE)
+    q3_val = quantile(col_data, 0.75, na.rm = TRUE)
+    shapiro_test = shapiro.test(col_data)
+    shapiro_result = ifelse(shapiro_test$p.value > 0.05, "normal", "not normal")
+    shapiro_result = ifelse(shapiro_test$p.value > 0.05, paste(round(shapiro_test$p.value,7), " (normal)"), paste(round(shapiro_test$p.value,3), " (not normal)"))
+    descriptive = rbind(descriptive, data.frame(
       Column = col_name,
       Mean = mean_val,
       Sigma = sigma_val,
