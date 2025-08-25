@@ -210,10 +210,10 @@ print(ChiST)
   ds$DCrequired <- ifelse(ds$Profession %in% c("Nurse", "Phys"), 1, 0)
   model4c = glm(TS_outcome ~
                  DCrequired+ 
-               #  Sex +     
+                 Sex +     
                  Age+
-              #   YearsWorking+ 
-                 DC_outcome+ #+
+                 YearsWorking+ 
+                 DC_outcome #+
                #         Profession*YearsWorking#+ 
                #         DCrequired*DC_outcome#+
                #         Profession*Age+
