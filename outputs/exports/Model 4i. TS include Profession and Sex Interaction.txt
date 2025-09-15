@@ -1,0 +1,117 @@
+[1] "Model 4i. TS include Profession and Sex Interaction"
+[1] "################### summary"
+
+Call:
+glm(formula = TS_outcome ~ Profession + Sex + Profession * Sex + 
+    Age + YearsWorking + DC_outcome, family = binomial(link = "logit"), 
+    data = ds)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.8204  -1.0410  -0.4262   1.0554   1.9841  
+
+Coefficients:
+                          Estimate Std. Error z value Pr(>|z|)   
+(Intercept)              -1.771172   0.591066  -2.997  0.00273 **
+ProfessionNurse           0.660300   0.424128   1.557  0.11951   
+ProfessionPhys            0.654195   0.556676   1.175  0.23992   
+ProfessionPsych          -1.331169   0.598916  -2.223  0.02624 * 
+ProfessionSW             -0.402028   0.552645  -0.727  0.46694   
+SexMale                  -1.392453   1.167447  -1.193  0.23297   
+Age                       0.027765   0.008846   3.139  0.00170 **
+YearsWorking              0.010484   0.007178   1.460  0.14416   
+DC_outcome1              -0.616758   0.232000  -2.658  0.00785 **
+ProfessionNurse:SexMale   1.566134   1.197400   1.308  0.19089   
+ProfessionPhys:SexMale    1.994624   1.364917   1.461  0.14392   
+ProfessionPsych:SexMale   2.248864   1.358291   1.656  0.09779 . 
+ProfessionSW:SexMale    -14.339827 567.332670  -0.025  0.97983   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 676.84  on 492  degrees of freedom
+Residual deviance: 585.87  on 480  degrees of freedom
+AIC: 611.87
+
+Number of Fisher Scoring iterations: 15
+
+[1] "Odds ratios"
+[1] "################### exp(coef(model))"
+                                [,1]       [,2]        [,3]
+(Intercept)             1.701335e-01 0.05341510   0.5418958
+ProfessionNurse         1.935373e+00 0.84282880   4.4441627
+ProfessionPhys          1.923593e+00 0.64604296   5.7275004
+ProfessionPsych         2.641683e-01 0.08167205   0.8544527
+ProfessionSW            6.689623e-01 0.22645445   1.9761617
+SexMale                 2.484651e-01 0.02520659   2.4491574
+Age                     1.028154e+00 1.01048178   1.0461360
+YearsWorking            1.010539e+00 0.99642066   1.0248568
+DC_outcome1             5.396914e-01 0.34250210   0.8504089
+ProfessionNurse:SexMale 4.788103e+00 0.45805288  50.0508402
+ProfessionPhys:SexMale  7.349442e+00 0.50630703 106.6828798
+ProfessionPsych:SexMale 9.476960e+00 0.66140583 135.7907300
+ProfessionSW:SexMale    5.919597e-07 0.00000000         Inf
+[1] "################## anova() function on the model to analyze the table of deviance"
+Analysis of Deviance Table
+
+Model: binomial, link: logit
+
+Response: TS_outcome
+
+Terms added sequentially (first to last)
+
+
+               Df Deviance Resid. Df Resid. Dev  Pr(>Chi)    
+NULL                             492     676.84              
+Profession      4   58.749       488     618.09 5.313e-12 ***
+Sex             1    0.642       487     617.45  0.423084    
+Age             1   10.249       486     607.20  0.001367 ** 
+YearsWorking    1    1.132       485     606.07  0.287327    
+DC_outcome      1    6.270       484     599.80  0.012282 *  
+Profession:Sex  4   13.928       480     585.87  0.007528 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "################## ROC area under curve"
+[1] "AUC = 0.721542952460384"
+[1] "\n\n############ beta, OR and p-values"
+                                       Variable   beta   OR p-value OR CI -0.95 OR CI +0.95
+(Intercept)                         (Intercept)  -1.77 0.17   0.003        0.05        0.54
+ProfessionNurse                 ProfessionNurse   0.66 1.94    0.12        0.84        4.44
+ProfessionPhys                   ProfessionPhys   0.65 1.92    0.24        0.65        5.73
+ProfessionPsych                 ProfessionPsych  -1.33 0.26   0.026        0.08        0.85
+ProfessionSW                       ProfessionSW   -0.4 0.67   0.467        0.23        1.98
+SexMale                                 SexMale  -1.39 0.25   0.233        0.03        2.45
+Age                                         Age   0.03 1.03   0.002        1.01        1.05
+YearsWorking                       YearsWorking   0.01 1.01   0.144           1        1.02
+DC_outcome1                         DC_outcome1  -0.62 0.54   0.008        0.34        0.85
+ProfessionNurse:SexMale ProfessionNurse:SexMale   1.57 4.79   0.191        0.46       50.05
+ProfessionPhys:SexMale   ProfessionPhys:SexMale   1.99 7.35   0.144        0.51      106.68
+ProfessionPsych:SexMale ProfessionPsych:SexMale   2.25 9.48   0.098        0.66      135.79
+ProfessionSW:SexMale       ProfessionSW:SexMale -14.34    0    0.98           0         Inf
+\begin{table}[!htb]
+\caption{Short model summary.  Model 4i. TS include Profession and Sex Interaction}
+\label{Short model summary.  Model 4i. TS include Profession and Sex Interaction}
+\begin{threeparttable}
+\begin{tabular}{cccccc}
+% используй {p{3cm}p{7cm}} если нужно переносить с newline 
+\toprule
+Variable&beta&OR&p-value&OR CI -0.95&OR CI +0.95\\
+\midrule
+(Intercept)&-1.77&0.17&0.003&0.05&0.54\\
+ProfessionNurse&0.66&1.94&0.12&0.84&4.44\\
+ProfessionPhys&0.65&1.92&0.24&0.65&5.73\\
+ProfessionPsych&-1.33&0.26&0.026&0.08&0.85\\
+ProfessionSW&-0.4&0.67&0.467&0.23&1.98\\
+SexMale&-1.39&0.25&0.233&0.03&2.45\\
+Age&0.03&1.03&0.002&1.01&1.05\\
+YearsWorking&0.01&1.01&0.144&1&1.02\\
+DC_outcome1&-0.62&0.54&0.008&0.34&0.85\\
+ProfessionNurse:SexMale&1.57&4.79&0.191&0.46&50.05\\
+ProfessionPhys:SexMale&1.99&7.35&0.144&0.51&106.68\\
+ProfessionPsych:SexMale&2.25&9.48&0.098&0.66&135.79\\
+ProfessionSW:SexMale&-14.34&0&0.98&0&Inf\\
+\bottomrule
+\end{tabular}
+\end{threeparttable}
+\end{table}
