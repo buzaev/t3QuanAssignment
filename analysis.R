@@ -74,7 +74,18 @@ exportDensityPlots(ds, filename,subsetName)
 
 
 ############## Question 2.1.  Digital competence and technostress  ###########
-#Table 2x2 DC_outcome Profession
+#Table 2x2 DC_outcome technostress
+tableOutcome = table(ds$DC_outcome, ds$TS_outcome)
+print(tableOutcome)
+latex=convertToLatex(tableOutcome,"2x2 Table")
+cat(latex)
+ChiST = chisq.test(tableOutcome)
+print(ChiST)   ##############3 <--------- Digital competence and technostress 
+
+
+
+
+#DC_outcome Profession
 tableOutcome = table(ds$DC_outcome, ds$Profession)
 print(tableOutcome)
 latex=convertToLatex(tableOutcome,"2x2 Table")
@@ -118,16 +129,32 @@ print(gg, newpage=FALSE)
 dev.off()
 
 
+
+
+
+
 ############## Question 2.2.Digital competence and the individualised characteristics of health professionals.
 #library(dummies)
 #ds = dummy.data.frame(ds, names = "Profession", sep = "") 
 #R language glm does automatically
 #logistic regression because dc_outcome is binary
 
-model2 = glm(DC_outcome ~ Profession +Sex + Age+ YearsWorking, data = ds, binomial(link = 'logit'))
+model1 = glm(DC_outcome ~ Profession +Sex + Age+ YearsWorking, data = ds, binomial(link = 'logit'))
+summary(model1)
+source("libraries/analyseModel.R")
+analyseModel(ds, ds$DC_outcome, model1, "Model 1. DC and individualised characteristics of HCPs")
+
+
+model2 = glm(DC_outcome ~
+                Profession+ 
+                Sex +     
+                Age+
+                YearsWorking+ 
+                Profession*Sex
+              ,data = ds, binomial(link = 'logit'))
 summary(model2)
 source("libraries/analyseModel.R")
-analyseModel(ds, ds$DC_outcome, model2, "Model 2. DC and individualised characteristics of HCPs")
+analyseModel(ds, ds$DC_outcome, model2, "Model 2. DC and individualised characteristics of HCPs with interaction Sex and Profession")
 
 
 ############## Question 2.3 Technostress and the individualised characteristics of health professionals  
@@ -147,7 +174,9 @@ print(ChiST)
 
 ### DC=1 males = 23/(111+23)
 ### DC=1 females = 128/(230+129)
-!!!!
+
+
+
 
 
 ############## Question 2.4 Technostress, the individualised characteristics of HCPs and DC
@@ -164,19 +193,7 @@ print(ChiST)
   
   ##### models with  interactions ###  
   
-  model2i = glm(DC_outcome ~
-                   Profession+ 
-                   Sex +     
-                   Age+
-                   YearsWorking+ 
-                   Profession*Sex
-                   ,data = ds, binomial(link = 'logit'))
-  summary(model2i)
-
-  source("libraries/analyseModel.R")
-  analyseModel(ds, ds$DC_outcome, model2ai, "Model 2i. with interaction")
   
-  ds$DCrequired <- ifelse(ds$Profession %in% c("Nurse", "Phys"), 1, 0)
   model4i = glm(TS_outcome ~
                    Profession+ 
                    Sex +     
@@ -189,7 +206,7 @@ print(ChiST)
   source("libraries/analyseModel.R")
   analyseModel(ds, ds$TS_outcome, model4i, "Model 4i. TS include Profession and Sex Interaction")
   
-  ####### Model 4b: prediction model with overfitting check ############
+  ####### Model 4c: prediction model with overfitting check ############
   
   
   set.seed(28467) # random seed
@@ -214,17 +231,7 @@ print(ChiST)
                  Age+
                  YearsWorking+ 
                  DC_outcome #+
-               #         Profession*YearsWorking#+ 
-               #         DCrequired*DC_outcome#+
-               #         Profession*Age+
-               #         Profession*Sex+
-               #         Sex*Age+ 
-               #         Sex*YearsWorking +
-               #         Sex*DC_outcome #+
-               #         Age*YearsWorking+
-               #         Age*DC_outcome +
-               #         YearsWorking*DC_outcome
-               ,data = ds, binomial(link = 'logit'))
+            ,data = ds, binomial(link = 'logit'))
   summary(model4c)
   source("libraries/analyseModel.R")
   analyseModel(ds, ds$TS_outcome, model4c, "Model 4c. TS, characteristics of HCPs, required and reported DC.")
@@ -268,39 +275,12 @@ print(ChiST)
   
   
   ####### CREDIT R packages authors ####################
+  
+  
   source ("libraries/exportUsedPackagesBibtexReferences.R") #my function to cite authors of packages
   exportUsedPackagesBibtexReferences ("outputs/exports/rCitation.bib")
   
   
-  
-  
- #Factor
-  library(dummies)
-  ds = dummy.data.frame(ds, names = "Profession", sep = "") 
-  ds = dummy.data.frame(ds, names = "Sex", sep = "") 
-  library(psych)
-  
-  ds_numeric <- ds[, c( "ProfessionNurse", "ProfessionPhys", 
-                       "ProfessionPsych", "ProfessionSW",  "SexMale", "Age", 
-                       "YearsWorking", "TS_outcome","DC_outcome")]
-  ds_numeric$TS_outcome=as.numeric(ds$TS_outcome)
-  ds_numeric$DC_outcome=as.numeric(ds$DC_outcome)
-  
-  ds_scaled <- scale(ds_numeric)
-  
-  # Check suitability for factor analysis
-  print(cor(ds_scaled)) # Correlation matrix
-  KMO(ds_scaled)        # KMO measure
-  cortest.bartlett(ds_scaled) # Bartlett's test of sphericity
-  
-  # Perform factor analysis
-  fa_result <- factanal(ds_scaled, factors = 5, rotation = "varimax")
-  
-  # Display results
-  print(fa_result)
-  
-  # Scree plot for determining the number of factors
-  fa.parallel(ds_scaled, fa = "fa")
   
   
   

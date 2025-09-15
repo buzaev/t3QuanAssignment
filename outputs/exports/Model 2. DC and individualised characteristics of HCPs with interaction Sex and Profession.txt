@@ -1,4 +1,4 @@
-[1] "Model 2i. with interaction"
+[1] "Model 2. DC and individualised characteristics of HCPs with interaction Sex and Profession"
 [1] "################### summary"
 
 Call:
@@ -85,8 +85,8 @@ ProfessionPhys:SexMale   ProfessionPhys:SexMale -13.43    0   0.983           0 
 ProfessionPsych:SexMale ProfessionPsych:SexMale   0.05 1.05    0.97        0.09       11.75
 ProfessionSW:SexMale       ProfessionSW:SexMale   0.36 1.43   0.745        0.16        12.6
 \begin{table}[!htb]
-\caption{Short model summary.  Model 2i. with interaction}
-\label{Short model summary.  Model 2i. with interaction}
+\caption{Short model summary.  Model 2. DC and individualised characteristics of HCPs with interaction Sex and Profession}
+\label{Short model summary.  Model 2. DC and individualised characteristics of HCPs with interaction Sex and Profession}
 \begin{threeparttable}
 \begin{tabular}{cccccc}
 % используй {p{3cm}p{7cm}} если нужно переносить с newline 

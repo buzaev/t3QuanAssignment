@@ -14,7 +14,7 @@ analyseModel=function(ds, observed, model, modelName) {
   ds$residuals = ds$observed - ds$predicted
 
   print(paste("AUC:", aucValue))
-  print  (shapiro.test(ds$residuals) )
+  #print  (shapiro.test(ds$residuals) )
   
   mean_exp=mean(ds$residuals, na.rm=TRUE) 
   sd_exp=sd(ds$residuals, na.rm=TRUE)      

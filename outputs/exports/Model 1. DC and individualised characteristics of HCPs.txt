@@ -1,4 +1,4 @@
-[1] "Model 2. DC and individualised characteristics of HCPs"
+[1] "Model 1. DC and individualised characteristics of HCPs"
 [1] "################### summary"
 
 Call:
@@ -72,8 +72,8 @@ SexMale                 SexMale -1.02 0.36       0        0.21        0.61
 Age                         Age -0.02 0.98   0.096        0.97           1
 YearsWorking       YearsWorking  0.01 1.01   0.106           1        1.03
 \begin{table}[!htb]
-\caption{Short model summary.  Model 2. DC and individualised characteristics of HCPs}
-\label{Short model summary.  Model 2. DC and individualised characteristics of HCPs}
+\caption{Short model summary.  Model 1. DC and individualised characteristics of HCPs}
+\label{Short model summary.  Model 1. DC and individualised characteristics of HCPs}
 \begin{threeparttable}
 \begin{tabular}{cccccc}
 % используй {p{3cm}p{7cm}} если нужно переносить с newline 
